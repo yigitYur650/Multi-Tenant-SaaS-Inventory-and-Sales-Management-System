@@ -12,6 +12,7 @@ import (
 	"multi-tenant-saas-inventory/internal/db"
 	"github.com/ansrivas/fiberprometheus/v2"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -80,6 +81,13 @@ func main() {
 	app := fiber.New(fiber.Config{
 		AppName: "Textile ERP Batch Ingest API",
 	})
+
+	// CORS Middleware
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "*",
+		AllowHeaders: "Origin, Content-Type, Accept, Authorization, X-Correlation-ID",
+		AllowMethods: "GET, POST, HEAD, PUT, DELETE, PATCH, OPTIONS",
+	}))
 
 	// Correlation ID Middleware
 	app.Use(func(c *fiber.Ctx) error {
