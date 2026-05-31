@@ -1,5 +1,7 @@
 # Distributed Multi-Tenant SaaS Inventory and Sales Management System
 
+This project demo link; https://multi-tenant-saa-s-inventory-and-sa.vercel.app/
+
 A high-throughput, enterprise-grade, offline-first B2B SaaS platform core designed to ensure zero data loss under massive transaction loads. Built using modern system architecture patterns (Clean Architecture, SOLID, and Service Pattern) with a Backend-for-Frontend (BFF) topology to fully eliminate API and database connection bottlenecks.
 
 ## 🏗️ System Architecture & High-Level Design
