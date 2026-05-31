@@ -185,7 +185,7 @@ export function Reports() {
                 axisLine={false} 
                 tickLine={false} 
                 tick={{ fill: '#64748b', fontSize: 12 }}
-                tickFormatter={(value) => `${value / 1000}k`}
+                tickFormatter={(value: number) => `${value / 1000}k`}
               />
               <Tooltip 
                 cursor={{ fill: '#f8fafc' }}

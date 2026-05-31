@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Mail, Lock, UserPlus, Building2, User, AlertCircle } from 'lucide-react';
 import { supabase } from '../lib/supabaseClient';
 import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from '../components/LanguageSwitcher';
 
 export const Register: React.FC = () => {
   const { t } = useTranslation();
@@ -54,6 +55,8 @@ export const Register: React.FC = () => {
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-slate-900 relative overflow-hidden text-slate-100">
+      {/* Language Switcher */}
+      <div className="absolute top-4 right-4 z-10"><LanguageSwitcher /></div>
       {/* Arka plan efektleri */}
       <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-rose-600/20 blur-[120px] rounded-full pointer-events-none mix-blend-screen"></div>
       <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-purple-600/20 blur-[100px] rounded-full pointer-events-none mix-blend-screen"></div>

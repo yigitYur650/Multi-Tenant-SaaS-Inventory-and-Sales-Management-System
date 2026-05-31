@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Mail, Lock, LogIn, AlertCircle } from 'lucide-react';
 import { supabase } from '../lib/supabaseClient';
 import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from '../components/LanguageSwitcher';
 
 export const Login: React.FC = () => {
   const { t } = useTranslation();
@@ -119,9 +120,12 @@ export const Login: React.FC = () => {
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-slate-900 relative overflow-hidden text-slate-100 font-sans">
-      {/* Arka plan efektleri */}
-      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-blue-600/30 blur-[120px] rounded-full pointer-events-none mix-blend-screen"></div>
-      <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-indigo-600/20 blur-[100px] rounded-full pointer-events-none mix-blend-screen"></div>
+
+        {/* Language Switcher */}
+        <div className="absolute top-4 right-4 z-10"><LanguageSwitcher /></div>
+        {/* Arka plan efektleri */}
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-blue-600/30 blur-[120px] rounded-full pointer-events-none mix-blend-screen"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-indigo-600/20 blur-[100px] rounded-full pointer-events-none mix-blend-screen"></div>
 
       {/* Glass Panel */}
       <div className="w-full max-w-md p-8 relative z-10">
