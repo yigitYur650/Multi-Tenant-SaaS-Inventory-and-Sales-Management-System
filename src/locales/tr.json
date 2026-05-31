@@ -1,0 +1,519 @@
+{
+  "menu": {
+    "dashboard": "Kontrol Paneli",
+    "inventory": "Envanter",
+    "sales": "Satışlar",
+    "reports": "Raporlar",
+    "admin": "Admin Paneli",
+    "reviewQueue": "Senkronizasyon DLQ",
+    "signout": "Çıkış Yap",
+    "change_password": "Şifre Değiştir"
+  },
+  "layout": {
+    "connection": {
+      "success": "Bağlantı Başarılı",
+      "error": "Bağlantı Koptu / Sandbox",
+      "connecting": "Bağlanıyor..."
+    },
+    "switcher": {
+      "title": "Dili Değiştir"
+    },
+    "sync": {
+      "synced": "Tüm veriler senkronize edildi",
+      "pending": "{{count}} bekleyen çevrimdışı işlem var",
+      "syncing": "Değişiklikler senkronize ediliyor...",
+      "error": "{{count}} senkronizasyon hatası tespit edildi",
+      "tooltip_synced": "Sistem çevrimiçi ve veritabanı tamamen güncel.",
+      "tooltip_pending": "Çevrimdışısınız veya senkronize edilmeyi bekleyen işlemler var.",
+      "tooltip_error": "Bazı işlemler senkronize edilemedi. Hataları görmek için tıklayın."
+    },
+    "storage": {
+      "warning_title": "Düşük Depolama Alanı",
+      "warning_message": "Tarayıcı depolama alanınız %{{percentage}} dolu. Veri kaybını önlemek için lütfen yer açın."
+    }
+  },
+  "roles": {
+    "PATRON": "Yönetici",
+    "CALISAN": "Personel"
+  },
+  "common": {
+    "welcome": "Hoş Geldiniz",
+    "loading": "Yükleniyor...",
+    "locale": "tr-TR",
+    "unknown": "Bilinmeyen",
+    "error": "Hata"
+  },
+  "inventory": {
+    "title": "Envanter Takibi",
+    "subtitle": "Sistem genelindeki stok hareketlerini ve ürünleri yönetin.",
+    "buttons": {
+      "report": "Rapor Al (PDF)",
+      "manageCategories": "Kategorileri Yönet",
+      "addNew": "Yeni Ürün Tanımla"
+    },
+    "filters": {
+      "searchPlaceholder": "Ürün Ara...",
+      "allCategories": "Tüm Kategoriler",
+      "color": "Renk",
+      "size": "Beden",
+      "reset": "Filtreleri Sıfırla"
+    },
+    "product": {
+      "noCategory": "Genel",
+      "details": "Detay / Düzenle",
+      "stockAction": "Stok İşlemi",
+      "noProductFound": "Eşleşen ürün bulunamadı.",
+      "sku": "SKU",
+      "stock": "Stok",
+      "adminOnly": "Sadece Admin erişebilir",
+      "deleteConfirm": "Bu ürün silinecektir. Emin misiniz?",
+      "deleteNoAuth": "Silme yetkiniz yok.",
+      "editNoAuth": "Sadece Yönetici (Patron) ürün detaylarını düzenleyebilir."
+    },
+    "stockModal": {
+      "title": "Stok Operasyonu",
+      "variantSelection": "Varyant Seçimi",
+      "addStock": "STOK EKLE",
+      "removeStock": "STOK DÜŞ",
+      "quantity": "İşlem Miktarı",
+      "unit": "ADET",
+      "currentStock": "MEVCUT STOK",
+      "newStock": "YENİ STOK",
+      "confirm": "ONAYLA",
+      "cancel": "İptal",
+      "success": "İşlem başarılı.",
+      "error": "İşlem başarısız.",
+      "quantityError": "Geçerli bir miktar girin.",
+      "negativeStockWarning": "Dikkat: Bu işlem stok miktarını eksiye düşürecektir. Devam etmek istiyor musunuz?"
+    }
+  },
+  "productForm": {
+    "titleNew": "Yeni Ürün Tanımı",
+    "titleEdit": "Ürün Düzenleme (Admin)",
+    "step1": "1. Ana Ürün Bilgileri",
+    "step2": "2. Ürün Varyantları",
+    "categoryLabel": "Kategori / Ürün Cinsi",
+    "selectPlaceholder": "Seçiniz...",
+    "descriptionLabel": "Kısa Açıklama",
+    "descriptionPlaceholder": "Örn: 2024 kış sezonu yeni kesim...",
+    "addVariant": "Yeni Varyant",
+    "colorLabel": "Renk",
+    "sizeLabel": "Beden / Ölçü",
+    "stockLabel": "Stok",
+    "criticalStockLabel": "Kritik Stok",
+    "priceLabel": "Satış Fiyatı",
+    "skuLabel": "Barkod/SKU",
+    "skuPlaceholder": "Oto-Kayıt",
+    "noVariant": "Bu ürüne ait varyant bulunmuyor.",
+    "addVariantNow": "Hemen yeni varyant ekleyin",
+    "auditTrail": "Son Stok Hareketleri (Audit Trail)",
+    "saveAll": "Tümünü Kaydet",
+    "saveChanges": "Değişiklikleri Kaydet",
+    "saving": "Kaydediliyor...",
+    "cancel": "İptal",
+    "errors": {
+      "selectCategory": "Lütfen ürün kategorisini seçin.",
+      "selectColorSize": "Lütfen her varyant için Renk ve Beden seçiniz.",
+      "setThreshold": "Lütfen her varyant için Kritik Stok Eşiği belirleyin.",
+      "generic": "Ürün kaydedilirken hata oluştu:"
+    }
+  },
+  "categoryManager": {
+    "title": "Kategori Yönetimi",
+    "tabs": {
+      "active": "Aktif Kategoriler",
+      "trash": "Çöp Kutusu"
+    },
+    "addCategory": "Yeni Kategori Ekle",
+    "formTitle": "Kategori Detayları",
+    "nameLabel": "Kategori Adı",
+    "namePlaceholder": "Örn: Tekstil, Mobilya...",
+    "parentLabel": "Üst Kategori (Opsiyonel)",
+    "makeParent": "Ana Kategori Yap",
+    "createButton": "KATEGORİ OLUŞTUR",
+    "creating": "EKLENİYOR...",
+    "noCategoryFound": "Kategori bulunamadı.",
+    "trashEmpty": "Çöp kutusu boş.",
+    "loading": "Yükleniyor...",
+    "deletedAt": "Silinme:",
+    "restore": "Geri Yükle",
+    "permanentDelete": "Kalıcı Olarak Sil",
+    "confirmTrash": "Kategoriyi çöp kutusuna taşımak istediğinize emin misiniz?",
+    "confirmPermanent": "DİKKAT: Bu kategori KALICI olarak silinecektir. Bu işlem geri alınamaz. Onaylıyor musunuz?",
+    "under": "Şunun altında:",
+    "history": {
+      "date": "Tarih",
+      "user": "Yapan",
+      "type": "İşlem",
+      "previous": "Önceki",
+      "change": "Değim",
+      "result": "Sonuç",
+      "in": "GİRİŞ",
+      "out": "ÇIKIŞ",
+      "system": "Sistem",
+      "records": "Kayıt",
+      "loading": "VERİLER ÇEKİLİYOR..."
+    },
+    "messages": {
+      "addSuccess": "Kategori başarıyla eklendi",
+      "addError": "Kategori eklenirken hata oluştu",
+      "updateSuccess": "Kategori güncellendi",
+      "updateError": "Güncelleme başarısız",
+      "restoreSuccess": "Kategori geri yüklendi",
+      "restoreError": "Geri yükleme başarısız",
+      "deleteSuccess": "Kategori çöp kutusuna taşındı",
+      "deleteError": "Bu kategori silinemez. İçinde ürün veya alt kategori bulunuyor olabilir.",
+      "forceDeleteSuccess": "Kategori kalıcı olarak silindi",
+      "forceDeleteError": "Kalıcı silme işlemi başarısız",
+      "fetchError": "Silinmiş kategoriler yüklenemedi"
+    }
+  },
+  "sales": {
+    "searchPlaceholder": "Ürün Ara...",
+    "recentActions": "Son İşlemler",
+    "noProductFound": "Aradığınız kriterlere uygun ürün bulunamadı.",
+    "categoryGeneral": "GENEL",
+    "unitPrice": "Birim Fiyat",
+    "stock": "STOK",
+    "cart": {
+      "title": "SEPETİM",
+      "items": "ÜRÜN",
+      "empty": "Sepetiniz Boş",
+      "emptySubtitle": "Hızlı satış için ürün seçin.",
+      "rowTotal": "Satır Toplamı"
+    },
+    "summary": {
+      "cash": "Nakit",
+      "card": "Kart",
+      "mailOrder": "M.Order",
+      "total": "Genel Toplam",
+      "complete": "SATIŞI TAMAMLA",
+      "success": "Satış Başarıyla Tamamlandı!"
+    },
+    "history": {
+      "title": "Satış Geçmişi & Raporlama",
+      "period": {
+        "daily": "Günlük",
+        "weekly": "Haftalık",
+        "monthly": "Aylık",
+        "yearly": "Yıllık",
+        "all": "Tümü"
+      },
+      "downloadReport": "Rapor İndir",
+      "totalRevenue": "Toplam Ciro",
+      "saleCount": "Satış Adedi",
+      "transaction": "İşlem",
+      "listTitle": "Satış Listesi",
+      "noSales": "Seçilen dönemde satış yok",
+      "detailTitle": "İşlem Detayı",
+      "printReceipt": "Fiş Yazdır",
+      "cashier": "Kasiyer",
+      "returned": "İade Edildi",
+      "takeReturn": "İade Al",
+      "returnedInfo": "({{count}} adet iade alındı)"
+    },
+    "return": {
+      "title": "Ürün İade İşlemi",
+      "product": "İADE EDİLECEK ÜRÜN",
+      "quantity": "İADE ADEDİ",
+      "maxQty": "MAX: {{count}} ADET",
+      "reason": "İADE SEBEBİ",
+      "totalReturn": "İADE EDİLECEK TUTAR",
+      "confirm": "İADEYİ ONAYLA",
+      "cancel": "Vazgeç",
+      "success": "İade işlemi başarılı.",
+      "error": "İade işlemi başarısız: ",
+      "reasons": {
+        "defective": "Defolu",
+        "sizeMismatch": "Beden Uymadı",
+        "changedMind": "Müşteri Vazgeçti",
+        "other": "Diğer"
+      }
+    },
+    "checkout": {
+      "title": "Kasa İşlemi",
+      "options": "ÖDEME SEÇENEKLERİ",
+      "paymentMethods": {
+        "cash": "Nakit",
+        "card": "Kredi Kartı",
+        "mailOrder": "Mail Order",
+        "fast": "Hızlı Çıkış"
+      },
+      "customerInfo": "Müşteri Adı Soyadı / Notu (Zorunlu)",
+      "customerPlaceholder": "Örn: Ahmet Yılmaz - 0555...",
+      "cashier": "KASİYER",
+      "totalCollection": "TOPLAM TAHSİLAT",
+      "confirm": "SİPARİŞİ ONAYLA VE TAMAMLA",
+      "processing": "İŞLEM GERÇEKLEŞTİRİLİYOR..."
+    },
+    "receipt": {
+      "title": "SAAS TEXTILE ERP",
+      "date": "TARIH",
+      "receiptNo": "FİS NO",
+      "itemHeader": "URUN / MIHTAR",
+      "totalHeader": "TUTAR",
+      "total": "TOPLAM",
+      "payment": "ÖDEME",
+      "cashier": "KASİYER",
+      "footer1": "*** TESEKKUR EDERIZ ***",
+      "footer2": "Bu bir sistem çıktısıdır."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Giriş Yap",
+      "subtitle": "SaaS ERP sisteminize güvenle erişin.",
+      "emailPlaceholder": "E-posta adresiniz",
+      "passwordPlaceholder": "Şifreniz",
+      "forgotPassword": "Şifremi Unuttum?",
+      "button": "GİRİŞ YAP",
+      "noAccount": "Hesabınız yok mu?",
+      "registerNow": "Hemen Kayıt Ol",
+      "error": "Giriş sırasında bir hata oluştu"
+    },
+    "forgot": {
+      "title": "Şifrenizi mi Unuttunuz?",
+      "subtitle": "E-posta adresinizi girin, size bir sıfırlama bağlantısı gönderelim.",
+      "success": "✅ Şifre sıfırlama bağlantısı e-posta adresinize gönderildi. Lütfen gelen kutunuzu kontrol edin.",
+      "backToLogin": "GİRİŞ EKRANINA DÖN",
+      "sendButton": "SIFIRLAMA BAĞLANTISI GÖNDER",
+      "sending": "Gönderiliyor..."
+    },
+    "register": {
+      "title": "Erp Dükkanınızı Kurun",
+      "subtitle": "Satış, envanter ve analizler için sisteme katılın.",
+      "fullNamePlaceholder": "Adınız Soyadınız",
+      "shopNamePlaceholder": "Mağaza / Şirket Adı",
+      "emailPlaceholder": "E-posta adresiniz",
+      "passwordPlaceholder": "Güvenli şifreniz",
+      "button": "Ücretsiz Patron Hesabı Oluştur",
+      "hasAccount": "Zaten bir hesabınız var mı?",
+      "loginNow": "Giriş Yapın",
+      "error": "Kayıt sırasında bir hata oluştu"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Hoş geldiniz, işte bugünkü ticaret özetiniz.",
+    "loading": "İstatistikler hazırlanıyor...",
+    "error": "Veriler yüklenirken bir hata oluştu.",
+    "errorTitle": "Veri Yüklenemedi",
+    "retry": "Tekrar Dene",
+    "dailyRevenue": "Günlük Ciro",
+    "registeredProducts": "Kayıtlı Ürün",
+    "saleCount": "Satış Sayısı",
+    "criticalStock": "Kritik Stok",
+    "performanceTitle": "Satış Performansı (Çok Satan Varyantlar)",
+    "noData": "Yeterli veri yok",
+    "unitProduct": "Ürün"
+  },
+  "passwordUpdate": {
+    "title": "Şifre Değiştir",
+    "forcedTitle": "Şifrenizi Belirleyin",
+    "securityCheck": "Güvenlik Kontrolü",
+    "forcedSubtitle": "Hesap kurtarma işleminiz başarıyla tamamlandı. Lütfen yeni ve güvenli bir şifre belirleyin.",
+    "regularSubtitle": "Hesap güvenliğiniz için şifrenizi düzenli aralıklarla değiştirmenizi öneririz.",
+    "successTitle": "Şifre Başarıyla Güncellendi",
+    "successMessage": "Oturumunuz kapatılıyor, lütfen yeni şifrenizle tekrar giriş yapın...",
+    "newPassword": "Yeni Şifre",
+    "confirmPassword": "Yeni Şifre (Tekrar)",
+    "saveButton": "ŞİFREYİ KAYDET VE YENİDEN BAŞLAT",
+    "updating": "GÜNCELLENİYOR...",
+    "cancel": "İşlemi İptal Et",
+    "minLengthError": "Şifre en az 6 karakter olmalıdır.",
+    "matchError": "Şifreler eşleşmiyor.",
+    "error": "Şifre güncellenirken bir hata oluştu."
+  },
+  "reports": {
+    "title": "Gelişmiş Analizler",
+    "subtitle": "İşletmenizin performansını detaylı olarak inceleyin.",
+    "filters": {
+      "daily": "Günlük",
+      "weekly": "Haftalık",
+      "monthly": "Aylık",
+      "yearly": "Yıllık"
+    },
+    "kpi": {
+      "totalRevenue": "Toplam Ciro",
+      "paymentDistribution": "Ödeme Dağılımı",
+      "totalRefund": "Toplam İade",
+      "netProfit": "Net Kâr"
+    },
+    "charts": {
+      "salesTrends": "Satış Trendleri",
+      "amountLabel": "Satış Tutarı"
+    },
+    "performance": {
+      "topSelling": "En Çok Satan Ürünler",
+      "nonSelling": "Hiç Satmayan Ürünler",
+      "unitPiece": "Adet",
+      "noSalesPeriod": "Bu dönemde satış bulunmuyor.",
+      "allProductsSold": "Tüm ürünleriniz satış gördü!",
+      "zeroSales": "0 Satış"
+    }
+  },
+  "errorBoundary": {
+    "title": "Üzgünüz, bir şeyler ters gitti.",
+    "message": "Uygulama çalışırken beklenmedik bir durum gerçekleşti.",
+    "refreshButton": "Arayüzü Yenile"
+  },
+  "pdf": {
+    "receipt": {
+      "title": "SATIS FISI",
+      "date": "Tarih",
+      "receiptNo": "Fis No",
+      "cashier": "Kasiyer",
+      "itemHeader": "Urun",
+      "qtyHeader": "Miktar",
+      "amountHeader": "Tutar",
+      "total": "GENEL TOPLAM",
+      "paymentType": "Odeme Tipi",
+      "thankYou1": "Bizi tercih ettiginiz",
+      "thankYou2": "icin tesekkur ederiz."
+    },
+    "inventory": {
+      "title": "ENVANTER RAPORU",
+      "date": "Rapor Tarihi",
+      "headers": {
+        "name": "Urun Adi",
+        "sku": "SKU",
+        "variant": "Renk/Beden",
+        "stock": "Stok",
+        "price": "Fiyat"
+      }
+    },
+    "sales": {
+      "title": "SATIS RAPORU",
+      "date": "Rapor Tarihi",
+      "periods": {
+        "daily": "GUNLUK",
+        "weekly": "HAFTALIK",
+        "monthly": "AYLIK",
+        "yearly": "YILLIK",
+        "all": "TUM ZAMANLAR"
+      },
+      "headers": {
+        "date": "Tarih",
+        "saleId": "Satis ID",
+        "itemCount": "Urun Sayisi",
+        "total": "Toplam Tutar"
+      },
+      "grandTotal": "Genel Toplam"
+    }
+  },
+  "admin": {
+    "title": "Admin Kontrol Paneli",
+    "subtitle": "Ana verileri (Master Data) yalnızca yetkili kullanıcılar yönetebilir.",
+    "unauthorized": {
+      "title": "Yetkisiz Erişim",
+      "message": "Bu sayfayı görüntülemek için PATRON rolüne sahip olmalısınız."
+    },
+    "masterData": {
+      "categories": {
+        "title": "Kategoriler (Ana Ürün Seçimi)",
+        "placeholder": "Yeni Kategori",
+        "errorAdd": "Kategori eklenirken hata"
+      },
+      "colors": {
+        "title": "Renk Tanımları",
+        "placeholder": "Renk Adı (Siyah vb.)",
+        "errorAdd": "Renk eklenirken hata"
+      },
+      "sizes": {
+        "title": "Beden / Ölçek Tablosu",
+        "placeholder": "Beden (S, M, L vb.)",
+        "errorAdd": "Beden eklenirken hata"
+      },
+      "common": {
+        "errorDelete": "Silinirken hata"
+      }
+    },
+    "staff": {
+      "title": "Personeller / Kullanıcılar",
+      "subtitle": "Mağazanıza bağlı çalışanları yönetin ve yeni hesaplar tanımlayın.",
+      "addForm": {
+        "title": "Yeni Personel Ekle",
+        "fullName": "Ad Soyad",
+        "fullNamePlaceholder": "Örn: Ahmet Yılmaz",
+        "email": "E-Posta Adresi",
+        "emailPlaceholder": "personel@magaza.com",
+        "password": "Geçici Şifre",
+        "passwordPlaceholder": "••••••••",
+        "role": "Yetki Rolü",
+        "role1": "Saha Personeli (Role 1)",
+        "role2": "Mağaza Müdürü (Role 2)",
+        "role3": "Patron / Admin (Role 3)",
+        "submit": "PERSONELİ KAYDET",
+        "submitting": "Hesap Oluşturuluyor...",
+        "success": "Personel başarıyla eklendi.",
+        "errorPassword": "Şifre en az 6 karakter olmalıdır.",
+        "errorCreate": "Kullanıcı oluşturulamadı."
+      },
+      "list": {
+        "title": "Mevcut Personel Listesi",
+        "userCount": "Kullanıcı",
+        "headerName": "Personel",
+        "headerRole": "Yetki Seviyesi",
+        "headerAction": "İşlem",
+        "empty": "Henüz personel tanımlanmamış.",
+        "role1": "ÇALIŞAN",
+        "role2": "MÜDÜR"
+      },
+      "detail": {
+        "title": "Personel Detayı",
+        "shopId": "MAĞAZA ID",
+        "roleManagement": "Yetki ve Rol Yönetimi",
+        "roleLabel": "Personel Rolü",
+        "updateButton": "GÜNCELLE",
+        "updateSuccess": "Personel rolü güncellendi.",
+        "updateError": "Hata oluştu.",
+        "auditTitle": "Personelin Son İşlemleri",
+        "auditLimit": "Son 10 İşlem",
+        "auditTable": {
+          "product": "Ürün",
+          "type": "İşlem",
+          "quantity": "Miktar",
+          "date": "Tarih",
+          "empty": "Hüzünlü sessizlik... Henüz bir işlem yok.",
+          "typeIn": "GİRİŞ",
+          "typeOut": "ÇIKIŞ",
+          "integrationSoon": "Satış Modülü Entegrasyonu Yakında"
+        },
+        "deleteButton": "PERSONELİ SİSTEMDEN KALDIR",
+        "deleteConfirm": "Bu personeli silmek istediğinize emin misiniz? (Not: Sadece profili siler, auth kaydı admin panelinden silinemez)",
+        "deleteError": "Silinirken hata oluştu."
+      }
+    }
+  },
+  "reviewQueue": {
+    "title": "Yönetici İnceleme Kuyruğu",
+    "subtitle": "Başarısız olan veri senkronizasyon işlemlerini inceleyin ve çözün (DLQ).",
+    "refresh": "Listeyi Yenile",
+    "confirmDismiss": "Bu işlemi iptal etmek istediğinize emin misiniz? Başarısız senkronizasyonlar listesinden kalıcı olarak silinecektir.",
+    "list": {
+      "title": "Başarısız Senkronizasyonlar",
+      "itemCount": "başarısız işlem",
+      "headerTable": "Tablo",
+      "headerAction": "Eylem",
+      "headerError": "Hata Mesajı",
+      "headerActionBtn": "Görüntüle",
+      "empty": "Tüm senkronizasyon işlemleri başarıyla tamamlandı. Hata bulunamadı!"
+    },
+    "detail": {
+      "title": "İşlem Detayları",
+      "correlationId": "Korelasyon ID (Correlation ID)",
+      "errorMessage": "Hata Mesajı",
+      "payload": "Veri Paketi (JSON)",
+      "discard": "Kuyruktan Çıkar",
+      "retry": "Tekrar Dene",
+      "selectHint": "Detayları görüntülemek ve işlemi çözmek için listeden bir öge seçin."
+    },
+    "toasts": {
+      "fetchError": "İnceleme kuyruğu yüklenirken hata oluştu.",
+      "retrySuccess": "Yeniden deneme işlemi kuyruğa eklendi.",
+      "retryError": "İşlem yeniden denenirken hata oluştu.",
+      "dismissSuccess": "İşlem başarıyla kuyruktan çıkarıldı.",
+      "dismissError": "İşlem kuyruktan çıkarılırken hata oluştu."
+    }
+  }
+}

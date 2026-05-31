@@ -1,0 +1,519 @@
+{
+  "menu": {
+    "dashboard": "Tableau de Bord",
+    "inventory": "Inventaire",
+    "sales": "Ventes",
+    "reports": "Rapports",
+    "admin": "Panneau Admin",
+    "reviewQueue": "File DLQ",
+    "signout": "Déconnexion",
+    "change_password": "Changer Mot de Passe"
+  },
+  "common": {
+    "welcome": "Bienvenue",
+    "loading": "Chargement...",
+    "locale": "fr-FR",
+    "unknown": "Inconnu",
+    "error": "Erreur"
+  },
+  "layout": {
+    "connection": {
+      "success": "Connexion Réussie",
+      "error": "Connexion Perdue / Sandbox",
+      "connecting": "Connexion..."
+    },
+    "switcher": {
+      "title": "Changer de langue"
+    },
+    "sync": {
+      "synced": "Toutes les données sont synchronisées",
+      "pending": "{{count}} transactions en attente hors ligne",
+      "syncing": "Synchronisation des modifications...",
+      "error": "{{count}} erreurs de synchronisation rencontrées",
+      "tooltip_synced": "Le système est en ligne et la base de données est entièrement synchronisée.",
+      "tooltip_pending": "Vous êtes hors ligne ou des transactions sont en attente de synchronisation.",
+      "tooltip_error": "Certaines transactions n'ont pas pu être synchronisées. Cliquez pour voir les erreurs."
+    },
+    "storage": {
+      "warning_title": "Espace de stockage faible",
+      "warning_message": "L'espace de stockage de votre navigateur est plein à {{percentage}}%. Veuillez libérer de l'espace pour éviter toute perte de données."
+    }
+  },
+  "roles": {
+    "PATRON": "Administrateur",
+    "CALISAN": "Personnel"
+  },
+  "inventory": {
+    "title": "Suivi des Stocks",
+    "subtitle": "Gérez les mouvements de stock et les produits dans tout le système.",
+    "buttons": {
+      "report": "Obtenir Rapport (PDF)",
+      "manageCategories": "Gérer les Catégories",
+      "addNew": "Définir Nouveau Produit"
+    },
+    "filters": {
+      "searchPlaceholder": "Rechercher Produit...",
+      "allCategories": "Toutes les Catégories",
+      "color": "Couleur",
+      "size": "Taille",
+      "reset": "Réinitialiser"
+    },
+    "product": {
+      "noCategory": "Général",
+      "details": "Détails / Modifier",
+      "stockAction": "Action de Stock",
+      "noProductFound": "Aucun produit trouvé.",
+      "sku": "SKU",
+      "stock": "Stock",
+      "adminOnly": "Accès réservé à l'Admin",
+      "deleteConfirm": "Ce produit sera supprimé. Êtes-vous sûr ?",
+      "deleteNoAuth": "Autorisation de suppression refusée.",
+      "editNoAuth": "Seul l'Administrateur peut modifier les détails du produit."
+    },
+    "stockModal": {
+      "title": "Opération de Stock",
+      "variantSelection": "Sélection de Variante",
+      "addStock": "AJOUTER STOCK",
+      "removeStock": "RÉDUIRE STOCK",
+      "quantity": "Quantité",
+      "unit": "UNITÉ",
+      "currentStock": "STOCK ACTUEL",
+      "newStock": "NOUVEAU STOCK",
+      "confirm": "CONFIRMER",
+      "cancel": "Annuler",
+      "success": "Opération réussie.",
+      "error": "Opération échouée.",
+      "quantityError": "Entrez une quantité valide.",
+      "negativeStockWarning": "Attention : Cette action réduira le stock à une quantité négative. Continuer ?"
+    }
+  },
+  "productForm": {
+    "titleNew": "Nouveau Produit",
+    "titleEdit": "Modifier Produit (Admin)",
+    "step1": "1. Informations Principales",
+    "step2": "2. Variantes du Produit",
+    "categoryLabel": "Catégorie / Type",
+    "selectPlaceholder": "Sélectionner...",
+    "descriptionLabel": "Courte Description",
+    "descriptionPlaceholder": "Ex: Nouvelle collection hiver 2024...",
+    "addVariant": "Nouvelle Variante",
+    "colorLabel": "Couleur",
+    "sizeLabel": "Taille / Mesure",
+    "stockLabel": "Stock",
+    "criticalStockLabel": "Stock Critique",
+    "priceLabel": "Prix de Vente (€)",
+    "skuLabel": "Code-barres/SKU",
+    "skuPlaceholder": "Auto-Enregistrement",
+    "noVariant": "Aucune variante pour ce produit.",
+    "addVariantNow": "Ajoutez une variante maintenant",
+    "auditTrail": "Derniers Mouvements (Audit Trail)",
+    "saveAll": "Tout Enregistrer",
+    "saveChanges": "Enregistrer les Modifications",
+    "saving": "Enregistrement...",
+    "cancel": "Annuler",
+    "errors": {
+      "selectCategory": "Veuillez sélectionner une catégorie.",
+      "selectColorSize": "Sélectionnez Couleur et Taille pour chaque variante.",
+      "setThreshold": "Définissez un seuil de stock critique pour chaque variante.",
+      "generic": "Erreur lors de l'enregistrement :"
+    }
+  },
+  "categoryManager": {
+    "title": "Gestion des Catégories",
+    "tabs": {
+      "active": "Catégories Actives",
+      "trash": "Corbeille"
+    },
+    "addCategory": "Ajouter Catégorie",
+    "formTitle": "Détails Catégorie",
+    "nameLabel": "Nom de la Catégorie",
+    "namePlaceholder": "Ex: Textile, Mobilier...",
+    "parentLabel": "Catégorie Parente (Optionnel)",
+    "makeParent": "Rendre Parent",
+    "createButton": "CRÉER CATÉGORIE",
+    "creating": "AJOUT...",
+    "noCategoryFound": "Aucune catégorie trouvée.",
+    "trashEmpty": "La corbeille est vide.",
+    "loading": "Chargement...",
+    "deletedAt": "Supprimé le :",
+    "restore": "Restaurer",
+    "permanentDelete": "Supprimer Définitivement",
+    "confirmTrash": "Déplacer vers la corbeille ?",
+    "confirmPermanent": "ATTENTION : Suppression DÉFINITIVE. Action irréversible. Confirmer ?",
+    "under": "Sous :",
+    "history": {
+      "date": "Date",
+      "user": "Utilisateur",
+      "type": "Action",
+      "previous": "Précédent",
+      "change": "Changement",
+      "result": "Résultat",
+      "in": "ENTRÉE",
+      "out": "SORTIE",
+      "system": "Système",
+      "records": "Records",
+      "loading": "CHARGEMENT..."
+    },
+    "messages": {
+      "addSuccess": "Catégorie ajoutée",
+      "addError": "Erreur lors de l'ajout",
+      "updateSuccess": "Catégorie mise à jour",
+      "updateError": "Mise à jour échouée",
+      "restoreSuccess": "Catégorie restaurée",
+      "restoreError": "Restauration échouée",
+      "deleteSuccess": "Déplacé vers la corbeille",
+      "deleteError": "Impossible de supprimer (contient des produits).",
+      "forceDeleteSuccess": "Supprimé définitivement",
+      "forceDeleteError": "Échec de suppression définitive",
+      "fetchError": "Erreur de chargement des catégories supprimées"
+    }
+  },
+  "sales": {
+    "searchPlaceholder": "Rechercher...",
+    "recentActions": "Actions Récentes",
+    "noProductFound": "Aucun produit trouvé.",
+    "categoryGeneral": "GÉNÉRAL",
+    "unitPrice": "Prix Unitaire",
+    "stock": "STOCK",
+    "cart": {
+      "title": "MON PANIER",
+      "items": "PRODUIT",
+      "empty": "Votre panier est vide",
+      "emptySubtitle": "Sélectionnez des produits.",
+      "rowTotal": "Total Ligne"
+    },
+    "summary": {
+      "cash": "Espèces",
+      "card": "Carte",
+      "mailOrder": "VAD",
+      "total": "Total Général",
+      "complete": "TERMINER LA VENTE",
+      "success": "Vente Réussie !"
+    },
+    "history": {
+      "title": "Historique des Ventes",
+      "period": {
+        "daily": "Journalier",
+        "weekly": "Hebdomadaire",
+        "monthly": "Mensuel",
+        "yearly": "Annuel",
+        "all": "Tout"
+      },
+      "downloadReport": "Télécharger Rapport",
+      "totalRevenue": "Chiffre d'Affaires",
+      "saleCount": "Nombre de Ventes",
+      "transaction": "Transaction",
+      "listTitle": "Liste des Ventes",
+      "noSales": "Aucune vente",
+      "detailTitle": "Détails Transaction",
+      "printReceipt": "Imprimer Ticket",
+      "cashier": "Caissier",
+      "returned": "Retourné",
+      "takeReturn": "Faire un Retour",
+      "returnedInfo": "({{count}} articles retournés)"
+    },
+    "return": {
+      "title": "Retour Produit",
+      "product": "PRODUIT À RETOURNER",
+      "quantity": "QUANTITÉ",
+      "maxQty": "MAX: {{count}}",
+      "reason": "MOTIF",
+      "totalReturn": "MONTANT À REMBOURSER",
+      "confirm": "CONFIRMER RETOUR",
+      "cancel": "Annuler",
+      "success": "Retour réussi.",
+      "error": "Échec du retour : ",
+      "reasons": {
+        "defective": "Défectueux",
+        "sizeMismatch": "Taille incorrecte",
+        "changedMind": "Changement d'avis",
+        "other": "Autre"
+      }
+    },
+    "checkout": {
+      "title": "Opération de Caisse",
+      "options": "OPTIONS DE PAIEMENT",
+      "paymentMethods": {
+        "cash": "Espèces",
+        "card": "Carte Bancaire",
+        "mailOrder": "Vente à Distance",
+        "fast": "Sortie Rapide"
+      },
+      "customerInfo": "Nom Client / Note (Optionnel)",
+      "customerPlaceholder": "Ex: Jean Dupont - 06...",
+      "cashier": "CAISSIER",
+      "totalCollection": "TOTAL ENCAISSÉ",
+      "confirm": "CONFIRMER LA COMMANDE",
+      "processing": "TRAITEMENT..."
+    },
+    "receipt": {
+      "title": "SAAS TEXTILE ERP",
+      "date": "DATE",
+      "receiptNo": "TICKET NO",
+      "itemHeader": "ARTICLE / QTÉ",
+      "totalHeader": "MONTANT",
+      "total": "TOTAL",
+      "payment": "PAIEMENT",
+      "cashier": "CAISSIER",
+      "footer1": "*** MERCI POUR VOTRE VISITE ***",
+      "footer2": "Ceci est un ticket système."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "subtitle": "Accédez à votre ERP en toute sécurité.",
+      "emailPlaceholder": "Votre email",
+      "passwordPlaceholder": "Votre mot de passe",
+      "forgotPassword": "Mot de passe oublié ?",
+      "button": "SE CONNECTER",
+      "noAccount": "Pas de compte ?",
+      "registerNow": "S'inscrire",
+      "error": "Erreur lors de la connexion"
+    },
+    "forgot": {
+      "title": "Mot de passe oublié ?",
+      "subtitle": "Entrez votre email pour recevoir un lien.",
+      "success": "✅ Un lien a été envoyé à votre adresse email.",
+      "backToLogin": "RETOUR À LA CONNEXION",
+      "sendButton": "ENVOYER LE LIEN",
+      "sending": "Envoi..."
+    },
+    "register": {
+      "title": "Créez votre boutique ERP",
+      "subtitle": "Gérez vos ventes, stocks et analyses.",
+      "fullNamePlaceholder": "Votre nom complet",
+      "shopNamePlaceholder": "Nom boutique / entreprise",
+      "emailPlaceholder": "Votre email",
+      "passwordPlaceholder": "Mot de passe sécurisé",
+      "button": "Créer Compte Administrateur",
+      "hasAccount": "Déjà inscrit ?",
+      "loginNow": "Se Connecter",
+      "error": "Erreur lors de l'inscription"
+    }
+  },
+  "dashboard": {
+    "title": "Tableau de Bord",
+    "subtitle": "Bienvenue, voici le résumé de votre activité.",
+    "loading": "Préparation des statistiques...",
+    "error": "Erreur lors du chargement des données.",
+    "errorTitle": "Données indisponibles",
+    "retry": "Réessayer",
+    "dailyRevenue": "CA Journalier",
+    "registeredProducts": "Produits",
+    "saleCount": "Ventes",
+    "criticalStock": "Stock Critique",
+    "performanceTitle": "Performances de Vente",
+    "noData": "Pas assez de données",
+    "unitProduct": "Produit"
+  },
+  "passwordUpdate": {
+    "title": "Changer Mot de Passe",
+    "forcedTitle": "Définir Mot de Passe",
+    "securityCheck": "Contrôle de Sécurité",
+    "forcedSubtitle": "Récupération réussie. Définissez un nouveau mot de passe.",
+    "regularSubtitle": "Changez votre mot de passe régulièrement.",
+    "successTitle": "Mot de passe mis à jour",
+    "successMessage": "Déconnexion... reconnectez-vous avec votre nouveau mot de passe.",
+    "newPassword": "Nouveau Mot de Passe",
+    "confirmPassword": "Confirmer Mot de Passe",
+    "saveButton": "ENREGISTRER ET REDÉMARRER",
+    "updating": "MISE À JOUR...",
+    "cancel": "Annuler",
+    "minLengthError": "Minimum 6 caractères.",
+    "matchError": "Les mots de passe ne correspondent pas.",
+    "error": "Erreur de mise à jour."
+  },
+  "reports": {
+    "title": "Analyses Avancées",
+    "subtitle": "Analysez les performances en détail.",
+    "filters": {
+      "daily": "Journalier",
+      "weekly": "Hebdomadaire",
+      "monthly": "Mensuel",
+      "yearly": "Annuel"
+    },
+    "kpi": {
+      "totalRevenue": "CA Total",
+      "paymentDistribution": "Modes de Paiement",
+      "totalRefund": "Remboursements",
+      "netProfit": "Bénéfice Net"
+    },
+    "charts": {
+      "salesTrends": "Tendances",
+      "amountLabel": "Montant (€)"
+    },
+    "performance": {
+      "topSelling": "Meilleures Ventes",
+      "nonSelling": "Moins Vendus",
+      "unitPiece": "Pièces",
+      "noSalesPeriod": "Aucune vente sur cette période.",
+      "allProductsSold": "Tous vos produits ont été vendus !",
+      "zeroSales": "0 Ventes"
+    }
+  },
+  "errorBoundary": {
+    "title": "Oups, une erreur est survenue.",
+    "message": "Une erreur inattendue s'est produite.",
+    "refreshButton": "Rafraîchir"
+  },
+  "pdf": {
+    "receipt": {
+      "title": "TICKET DE CAISSE",
+      "date": "Date",
+      "receiptNo": "Ticket No",
+      "cashier": "Caissier",
+      "itemHeader": "Article",
+      "qtyHeader": "Qté",
+      "amountHeader": "Montant",
+      "total": "TOTAL GÉNÉRAL",
+      "paymentType": "Paiement",
+      "thankYou1": "Merci pour votre",
+      "thankYou2": "visite."
+    },
+    "inventory": {
+      "title": "RAPPORT D'INVENTAIRE",
+      "date": "Date du Rapport",
+      "headers": {
+        "name": "Nom Produit",
+        "sku": "SKU",
+        "variant": "Variante",
+        "stock": "Stock",
+        "price": "Prix"
+      }
+    },
+    "sales": {
+      "title": "RAPPORT DE VENTES",
+      "date": "Date du Rapport",
+      "periods": {
+        "daily": "JOUR",
+        "weekly": "SEMAINE",
+        "monthly": "MOIS",
+        "yearly": "ANNÉE",
+        "all": "TOUT"
+      },
+      "headers": {
+        "date": "Date",
+        "saleId": "Vente ID",
+        "itemCount": "Articles",
+        "total": "Total"
+      },
+      "grandTotal": "Total Général"
+    }
+  },
+  "admin": {
+    "title": "Panneau d'Administration",
+    "subtitle": "Gestion des données maîtres réservée aux administrateurs.",
+    "unauthorized": {
+      "title": "Accès non autorisé",
+      "message": "Rôle PROPRIÉTAIRE requis."
+    },
+    "masterData": {
+      "categories": {
+        "title": "Catégories",
+        "placeholder": "Nouvelle Catégorie",
+        "errorAdd": "Erreur d'ajout"
+      },
+      "colors": {
+        "title": "Couleurs",
+        "placeholder": "Nom Couleur",
+        "errorAdd": "Erreur d'ajout"
+      },
+      "sizes": {
+        "title": "Tailles / Mesures",
+        "placeholder": "Taille (S, M, L...)",
+        "errorAdd": "Erreur d'ajout"
+      },
+      "common": {
+        "errorDelete": "Erreur de suppression"
+      }
+    },
+    "staff": {
+      "title": "Personnel / Utilisateurs",
+      "subtitle": "Gérez les comptes employés.",
+      "addForm": {
+        "title": "Ajouter Personnel",
+        "fullName": "Nom Complet",
+        "fullNamePlaceholder": "Ex: Jean Dupont",
+        "email": "Email",
+        "emailPlaceholder": "personnel@boutique.com",
+        "password": "Mot de passe Temporaire",
+        "passwordPlaceholder": "••••••••",
+        "role": "Rôle",
+        "role1": "Terrain (Role 1)",
+        "role2": "Gérant (Role 2)",
+        "role3": "Propriétaire (Role 3)",
+        "submit": "ENREGISTRER",
+        "submitting": "Création...",
+        "success": "Personnel ajouté.",
+        "errorPassword": "Min 6 caractères.",
+        "errorCreate": "Échec de création."
+      },
+      "list": {
+        "title": "Liste du Personnel",
+        "userCount": "Utilisateur",
+        "headerName": "Nom",
+        "headerRole": "Niveau",
+        "headerAction": "Action",
+        "empty": "Aucun personnel.",
+        "role1": "EMPLOYÉ",
+        "role2": "GÉRANT"
+      },
+      "detail": {
+        "title": "Détails Personnel",
+        "shopId": "SHOP ID",
+        "roleManagement": "Gestion des Droits",
+        "roleLabel": "Rôle Personnel",
+        "updateButton": "METTRE À JOUR",
+        "updateSuccess": "Rôle mis à jour.",
+        "updateError": "Erreur survenue.",
+        "auditTitle": "Dernières Actions",
+        "auditLimit": "10 Dernières Actions",
+        "auditTable": {
+          "product": "Produit",
+          "type": "Action",
+          "quantity": "Qté",
+          "date": "Date",
+          "empty": "Aucune action.",
+          "typeIn": "ENTRÉE",
+          "typeOut": "SORTIE",
+          "integrationSoon": "Intégration Ventes Bientôt"
+        },
+        "deleteButton": "SUPPRIMER DU SYSTÈME",
+        "deleteConfirm": "Supprimer ce personnel ?",
+        "deleteError": "Erreur de suppression."
+      }
+    }
+  },
+  "reviewQueue": {
+    "title": "File de Révision Administrateur",
+    "subtitle": "Examinez et résolvez les opérations de synchronisation de données échouées (DLQ).",
+    "refresh": "Actualiser la liste",
+    "confirmDismiss": "Êtes-vous sûr de vouloir rejeter cette opération? Elle sera définitivement supprimée de la liste.",
+    "list": {
+      "title": "Synchronisations Échouées",
+      "itemCount": "opérations échouées",
+      "headerTable": "Table",
+      "headerAction": "Action",
+      "headerError": "Message d'Erreur",
+      "headerActionBtn": "Voir",
+      "empty": "Toutes les opérations de synchronisation ont réussi. Aucun échec trouvé!"
+    },
+    "detail": {
+      "title": "Détails de l'Opération",
+      "correlationId": "ID de Corrélation",
+      "errorMessage": "Message d'Erreur",
+      "payload": "Données (JSON)",
+      "discard": "Rejeter",
+      "retry": "Réessayer",
+      "selectHint": "Sélectionnez un élément de la liste pour voir les détails et résoudre l'opération."
+    },
+    "toasts": {
+      "fetchError": "Échec de récupération de la file de révision.",
+      "retrySuccess": "Opération de réessai mise en file d'attente.",
+      "retryError": "Échec du réessai de l'opération.",
+      "dismissSuccess": "Opération rejetée avec succès.",
+      "dismissError": "Échec du rejet de l'opération."
+    }
+  }
+}

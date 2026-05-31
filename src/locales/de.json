@@ -1,0 +1,519 @@
+{
+  "menu": {
+    "dashboard": "Dashboard",
+    "inventory": "Inventar",
+    "sales": "Verkäufe",
+    "reports": "Berichte",
+    "admin": "Admin-Bereich",
+    "reviewQueue": "Synchronisations-DLQ",
+    "signout": "Abmelden",
+    "change_password": "Passwort ändern"
+  },
+  "common": {
+    "welcome": "Willkommen",
+    "loading": "Laden...",
+    "locale": "de-DE",
+    "unknown": "Unbekannt",
+    "error": "Fehler"
+  },
+  "layout": {
+    "connection": {
+      "success": "Verbindung erfolgreich",
+      "error": "Verbindung unterbrochen / Sandbox",
+      "connecting": "Verbinde..."
+    },
+    "switcher": {
+      "title": "Sprache ändern"
+    },
+    "sync": {
+      "synced": "Alle Daten synchronisiert",
+      "pending": "{{count}} ausstehende Transaktionen offline",
+      "syncing": "Änderungen werden synchronisiert...",
+      "error": "{{count}} Synchronisationsfehler aufgetreten",
+      "tooltip_synced": "Das System ist online und die Datenbank ist vollständig synchronisiert.",
+      "tooltip_pending": "Sie sind offline oder es warten Transaktionen auf die Synchronisierung.",
+      "tooltip_error": "Einige Transaktionen konnten nicht synchronisiert werden. Klicken Sie, um Fehler anzuzeigen."
+    },
+    "storage": {
+      "warning_title": "Speicherplatz fast voll",
+      "warning_message": "Der Speicherplatz Ihres Browsers ist zu {{percentage}}% voll. Bitte geben Sie Speicherplatz frei, um Datenverlust zu vermeiden."
+    }
+  },
+  "roles": {
+    "PATRON": "Administrator",
+    "CALISAN": "Personal"
+  },
+  "inventory": {
+    "title": "Bestandsverwaltung",
+    "subtitle": "Verwalten Sie Lagerbewegungen und Produkte im gesamten System.",
+    "buttons": {
+      "report": "Bericht erstellen (PDF)",
+      "manageCategories": "Kategorien verwalten",
+      "addNew": "Neues Produkt definieren"
+    },
+    "filters": {
+      "searchPlaceholder": "Produkt suchen...",
+      "allCategories": "Alle Kategorien",
+      "color": "Farbe",
+      "size": "Größe",
+      "reset": "Filter zurücksetzen"
+    },
+    "product": {
+      "noCategory": "Allgemein",
+      "details": "Details / Bearbeiten",
+      "stockAction": "Lageraktion",
+      "noProductFound": "Kein passendes Produkt gefunden.",
+      "sku": "SKU",
+      "stock": "Lagerbestand",
+      "adminOnly": "Nur für Admin zugänglich",
+      "deleteConfirm": "Dieses Produkt wird gelöscht. Sind Sie sicher?",
+      "deleteNoAuth": "Keine Berechtigung zum Löschen.",
+      "editNoAuth": "Nur der Administrator kann Produktdetails bearbeiten."
+    },
+    "stockModal": {
+      "title": "Lageroperation",
+      "variantSelection": "Varianten-Auswahl",
+      "addStock": "LAGER HINZUFÜGEN",
+      "removeStock": "LAGER ENTNEHMEN",
+      "quantity": "Operationsmenge",
+      "unit": "STÜCK",
+      "currentStock": "AKTUELLER BESTAND",
+      "newStock": "NEUER BESTAND",
+      "confirm": "BESTÄTIGEN",
+      "cancel": "Abbrechen",
+      "success": "Vorgang erfolgreich.",
+      "error": "Vorgang fehlgeschlagen.",
+      "quantityError": "Geben Sie eine gültige Menge ein.",
+      "negativeStockWarning": "Achtung: Diese Aktion führt zu einem negativen Lagerbestand. Möchten Sie fortfahren?"
+    }
+  },
+  "productForm": {
+    "titleNew": "Neue Produktdefinition",
+    "titleEdit": "Produkt bearbeiten (Admin)",
+    "step1": "1. Hauptprodukt-Informationen",
+    "step2": "2. Produktvarianten",
+    "categoryLabel": "Kategorie / Produktart",
+    "selectPlaceholder": "Auswählen...",
+    "descriptionLabel": "Kurzbeschreibung",
+    "descriptionPlaceholder": "z.B. Neue Kollektion Winter 2024...",
+    "addVariant": "Neue Variante",
+    "colorLabel": "Farbe",
+    "sizeLabel": "Größe",
+    "stockLabel": "Lagerbestand",
+    "criticalStockLabel": "Kritischer Bestand",
+    "priceLabel": "Verkaufspreis (€)",
+    "skuLabel": "Barcode/SKU",
+    "skuPlaceholder": "Auto-Generiert",
+    "noVariant": "Keine Varianten für dieses Produkt vorhanden.",
+    "addVariantNow": "Jetzt neue Variante hinzufügen",
+    "auditTrail": "Letzte Lagerbewegungen (Audit Trail)",
+    "saveAll": "Alles speichern",
+    "saveChanges": "Änderungen speichern",
+    "saving": "Speichere...",
+    "cancel": "Abbrechen",
+    "errors": {
+      "selectCategory": "Bitte wählen Sie eine Produktkategorie.",
+      "selectColorSize": "Bitte wählen Sie Farbe und Größe für jede Variante.",
+      "setThreshold": "Bitte legen Sie für jede Variante eine kritische Bestandsschwelle fest.",
+      "generic": "Fehler beim Speichern des Produkts:"
+    }
+  },
+  "categoryManager": {
+    "title": "Kategorie-Management",
+    "tabs": {
+      "active": "Aktive Kategorien",
+      "trash": "Papierkorb"
+    },
+    "addCategory": "Neue Kategorie hinzufügen",
+    "formTitle": "Kategorie-Details",
+    "nameLabel": "Kategoriename",
+    "namePlaceholder": "z.B. Textilien, Möbel...",
+    "parentLabel": "Oberkategorie (Optional)",
+    "makeParent": "Zur Hauptkategorie machen",
+    "createButton": "KATEGORIE ERSTELLEN",
+    "creating": "WIRD HINZUGEFÜGT...",
+    "noCategoryFound": "Keine Kategorie gefunden.",
+    "trashEmpty": "Papierkorb ist leer.",
+    "loading": "Laden...",
+    "deletedAt": "Gelöscht am:",
+    "restore": "Wiederherstellen",
+    "permanentDelete": "Endgültig löschen",
+    "confirmTrash": "Möchten Sie die Kategorie in den Papierkorb verschieben?",
+    "confirmPermanent": "ACHTUNG: Diese Kategorie wird ENDGÜLTIG gelöscht. Diese Aktion kann nicht rückgängig gemacht werden. Bestätigen?",
+    "under": "Unter:",
+    "history": {
+      "date": "Datum",
+      "user": "Benutzer",
+      "type": "Typ",
+      "previous": "Vorherig",
+      "change": "Änderung",
+      "result": "Ergebnis",
+      "in": "EINGANG",
+      "out": "AUSGANG",
+      "system": "System",
+      "records": "Einträge",
+      "loading": "DATEN WERDEN GELADEN..."
+    },
+    "messages": {
+      "addSuccess": "Kategorie erfolgreich hinzugefügt",
+      "addError": "Fehler beim Hinzufügen der Kategorie",
+      "updateSuccess": "Kategorie aktualisiert",
+      "updateError": "Aktualisierung fehlgeschlagen",
+      "restoreSuccess": "Kategorie wiederhergestellt",
+      "restoreError": "Wiederherstellung fehlgeschlagen",
+      "deleteSuccess": "Kategorie in den Papierkorb verschoben",
+      "deleteError": "Diese Kategorie kann nicht gelöscht werden. Sie enthält möglicherweise Produkte oder Unterkategorien.",
+      "forceDeleteSuccess": "Kategorie endgültig gelöscht",
+      "forceDeleteError": "Endgültiges Löschen fehlgeschlagen",
+      "fetchError": "Gelöschte Kategorien konnten nicht geladen werden"
+    }
+  },
+  "sales": {
+    "searchPlaceholder": "Produkt suchen...",
+    "recentActions": "Letzte Aktionen",
+    "noProductFound": "Kein Produkt entsprechend Ihren Kriterien gefunden.",
+    "categoryGeneral": "ALLGEMEIN",
+    "unitPrice": "Einzelpreis",
+    "stock": "LAGER",
+    "cart": {
+      "title": "MEIN WARENKORB",
+      "items": "PRODUKT",
+      "empty": "Ihr Warenkorb ist leer",
+      "emptySubtitle": "Wählen Sie Produkte für den Schnellverkauf aus.",
+      "rowTotal": "Zeilensumme"
+    },
+    "summary": {
+      "cash": "Bargeld",
+      "card": "Karte",
+      "mailOrder": "M.Order",
+      "total": "Gesamtsumme",
+      "complete": "VERKAUF ABSCHLIESSEN",
+      "success": "Verkauf erfolgreich abgeschlossen!"
+    },
+    "history": {
+      "title": "Verkaufshistorie & Berichte",
+      "period": {
+        "daily": "Täglich",
+        "weekly": "Wöchentlich",
+        "monthly": "Monatlich",
+        "yearly": "Jährlich",
+        "all": "Alle"
+      },
+      "downloadReport": "Bericht herunterladen",
+      "totalRevenue": "Gesamtumsatz",
+      "saleCount": "Verkaufsanzahl",
+      "transaction": "Transaktion",
+      "listTitle": "Verkaufsliste",
+      "noSales": "Keine Verkäufe im gewählten Zeitraum",
+      "detailTitle": "Transaktionsdetails",
+      "printReceipt": "Quittung drucken",
+      "cashier": "Kassierer",
+      "returned": "Zurückgegeben",
+      "takeReturn": "Rücknahme",
+      "returnedInfo": "({{count}} Artikel zurückgegeben)"
+    },
+    "return": {
+      "title": "Produkt-Rückgabe",
+      "product": "RÜCKGABEPRODUKT",
+      "quantity": "RÜCKGABEMENGE",
+      "maxQty": "MAX: {{count}} STÜCK",
+      "reason": "RÜCKGABEGRUND",
+      "totalReturn": "RÜCKERSTATTUNGSBETRAG",
+      "confirm": "RÜCKGABE BESTÄTIGEN",
+      "cancel": "Abbrechen",
+      "success": "Rückgabe erfolgreich.",
+      "error": "Rückgabe fehlgeschlagen: ",
+      "reasons": {
+        "defective": "Defekt",
+        "sizeMismatch": "Größe passt nicht",
+        "changedMind": "Kunde hat es sich anders überlegt",
+        "other": "Sonstiges"
+      }
+    },
+    "checkout": {
+      "title": "Kassiervorgang",
+      "options": "ZAHLUNGSOPTIONEN",
+      "paymentMethods": {
+        "cash": "Bargeld",
+        "card": "Kreditkarte",
+        "mailOrder": "Mail Order",
+        "fast": "Schnellkasse"
+      },
+      "customerInfo": "Kundenname / Notiz (Optional)",
+      "customerPlaceholder": "z.B. Max Mustermann - 0155...",
+      "cashier": "KASSIERER",
+      "totalCollection": "GESAMTBETRAG",
+      "confirm": "BESTELLUNG BESTÄTIGEN",
+      "processing": "WIRD VERARBEITET..."
+    },
+    "receipt": {
+      "title": "SAAS TEXTILE ERP",
+      "date": "DATUM",
+      "receiptNo": "BELEG-NR",
+      "itemHeader": "ARTIKEL / MENGE",
+      "totalHeader": "BETRAG",
+      "total": "GESAMT",
+      "payment": "ZAHLUNG",
+      "cashier": "KASSIERER",
+      "footer1": "*** VIELEN DANK ***",
+      "footer2": "Dies ist ein Systembeleg."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Anmelden",
+      "subtitle": "Greifen Sie sicher auf Ihr SaaS-ERP-System zu.",
+      "emailPlaceholder": "Ihre E-Mail-Adresse",
+      "passwordPlaceholder": "Ihr Passwort",
+      "forgotPassword": "Passwort vergessen?",
+      "button": "ANMELDEN",
+      "noAccount": "Noch kein Konto?",
+      "registerNow": "Jetzt registrieren",
+      "error": "Fehler beim Anmelden"
+    },
+    "forgot": {
+      "title": "Passwort vergessen?",
+      "subtitle": "Geben Sie Ihre E-Mail-Adresse ein, wir senden Ihnen einen Reset-Link.",
+      "success": "✅ Ein Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail-Adresse gesendet.",
+      "backToLogin": "ZURÜCK ZUR ANMELDUNG",
+      "sendButton": "RESET-LINK SENDEN",
+      "sending": "Wird gesendet..."
+    },
+    "register": {
+      "title": "Erstellen Sie Ihren ERP-Shop",
+      "subtitle": "Werden Sie Teil des Systems für Verkauf, Inventar und Analysen.",
+      "fullNamePlaceholder": "Ihr vollständiger Name",
+      "shopNamePlaceholder": "Shop- / Firmenname",
+      "emailPlaceholder": "Ihre E-Mail-Adresse",
+      "passwordPlaceholder": "Ihr sicheres Passwort",
+      "button": "Kostenloses Administratorkonto erstellen",
+      "hasAccount": "Haben Sie bereits ein Konto?",
+      "loginNow": "Anmelden",
+      "error": "Fehler bei der Registrierung"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Willkommen, hier ist Ihre heutige Geschäftsübersicht.",
+    "loading": "Statistiken werden vorbereitet...",
+    "error": "Fehler beim Laden der Daten.",
+    "errorTitle": "Daten konnten nicht geladen werden",
+    "retry": "Erneut versuchen",
+    "dailyRevenue": "Tagesumsatz",
+    "registeredProducts": "Registrierte Produkte",
+    "saleCount": "Anzahl der Verkäufe",
+    "criticalStock": "Kritischer Bestand",
+    "performanceTitle": "Verkaufsleistung (Meistverkaufte Varianten)",
+    "noData": "Nicht genügend Daten",
+    "unitProduct": "Produkt"
+  },
+  "passwordUpdate": {
+    "title": "Passwort ändern",
+    "forcedTitle": "Passwort festlegen",
+    "securityCheck": "Sicherheitsprüfung",
+    "forcedSubtitle": "Konto-Wiederherstellung erfolgreich abgeschlossen. Bitte legen Sie ein neues Passwort fest.",
+    "regularSubtitle": "Wir empfehlen, Ihr Passwort regelmäßig zu ändern.",
+    "successTitle": "Passwort erfolgreich aktualisiert",
+    "successMessage": "Sie werden abgemeldet, bitte melden Sie sich mit Ihrem neuen Passwort wieder an...",
+    "newPassword": "Neues Passwort",
+    "confirmPassword": "Neues Passwort (bestätigen)",
+    "saveButton": "PASSWORT SPEICHERN & NEU STARTEN",
+    "updating": "WIRD AKTUALISIERT...",
+    "cancel": "Vorgang abbrechen",
+    "minLengthError": "Passwort muss mindestens 6 Zeichen lang sein.",
+    "matchError": "Passwörter stimmen nicht überein.",
+    "error": "Fehler beim Aktualisieren des Passworts."
+  },
+  "reports": {
+    "title": "Erweiterte Analysen",
+    "subtitle": "Analysieren Sie die Leistung Ihres Unternehmens im Detail.",
+    "filters": {
+      "daily": "Täglich",
+      "weekly": "Wöchentlich",
+      "monthly": "Monatlich",
+      "yearly": "Jährlich"
+    },
+    "kpi": {
+      "totalRevenue": "Gesamtumsatz",
+      "paymentDistribution": "Zahlungsverteilung",
+      "totalRefund": "Gesamtrückerstattung",
+      "netProfit": "Nettogewinn"
+    },
+    "charts": {
+      "salesTrends": "Verkaufstrends",
+      "amountLabel": "Verkaufsbetrag (€)"
+    },
+    "performance": {
+      "topSelling": "Meistverkaufte Produkte",
+      "nonSelling": "Nicht verkaufte Produkte",
+      "unitPiece": "Stück",
+      "noSalesPeriod": "Keine Verkäufe in diesem Zeitraum.",
+      "allProductsSold": "Alle Ihre Produkte wurden verkauft!",
+      "zeroSales": "0 Verkäufe"
+    }
+  },
+  "errorBoundary": {
+    "title": "Entschuldigung, etwas ist schief gelaufen.",
+    "message": "Ein unerwarteter Fehler ist aufgetreten.",
+    "refreshButton": "Oberfläche aktualisieren"
+  },
+  "pdf": {
+    "receipt": {
+      "title": "QUITTUNG",
+      "date": "Datum",
+      "receiptNo": "Beleg-Nr",
+      "cashier": "Kassierer",
+      "itemHeader": "Artikel",
+      "qtyHeader": "Menge",
+      "amountHeader": "Betrag",
+      "total": "GESAMTSUMME",
+      "paymentType": "Zahlungsart",
+      "thankYou1": "Vielen Dank",
+      "thankYou2": "für Ihren Einkauf."
+    },
+    "inventory": {
+      "title": "INVENTARBERICHT",
+      "date": "Berichtsdatum",
+      "headers": {
+        "name": "Produktname",
+        "sku": "SKU",
+        "variant": "Farbe/Größe",
+        "stock": "Lager",
+        "price": "Preis"
+      }
+    },
+    "sales": {
+      "title": "VERKAUFSBERICHT",
+      "date": "Berichtsdatum",
+      "periods": {
+        "daily": "TÄGLICH",
+        "weekly": "WÖCHENTLICH",
+        "monthly": "MONATLICH",
+        "yearly": "JÄHRLICH",
+        "all": "GESAMT"
+      },
+      "headers": {
+        "date": "Datum",
+        "saleId": "Verkaufs-ID",
+        "itemCount": "Artikelanzahl",
+        "total": "Gesamtbetrag"
+      },
+      "grandTotal": "Gesamtsumme"
+    }
+  },
+  "admin": {
+    "title": "Admin-Bereich",
+    "subtitle": "Verwalten Sie Stammdaten nur als autorisierter Benutzer.",
+    "unauthorized": {
+      "title": "Unbefugter Zugriff",
+      "message": "Sie müssen die Rolle EIGENTÜMER haben, um diese Seite zu sehen."
+    },
+    "masterData": {
+      "categories": {
+        "title": "Kategorien (Hauptauswahl)",
+        "placeholder": "Neue Kategorie",
+        "errorAdd": "Fehler beim Hinzufügen der Kategorie"
+      },
+      "colors": {
+        "title": "Farben",
+        "placeholder": "Farbe (Schwarz etc.)",
+        "errorAdd": "Fehler beim Hinzufügen der Farbe"
+      },
+      "sizes": {
+        "title": "Größen / Maße",
+        "placeholder": "Größe (S, M, L etc.)",
+        "errorAdd": "Fehler beim Hinzufügen der Größe"
+      },
+      "common": {
+        "errorDelete": "Fehler beim Löschen"
+      }
+    },
+    "staff": {
+      "title": "Personal / Benutzer",
+      "subtitle": "Verwalten Sie Mitarbeiter und legen Sie neue Konten fest.",
+      "addForm": {
+        "title": "Neuen Mitarbeiter hinzufügen",
+        "fullName": "Name Nachname",
+        "fullNamePlaceholder": "z.B. Max Mustermann",
+        "email": "E-Mail-Adresse",
+        "emailPlaceholder": "personal@shop.com",
+        "password": "Temporäres Passwort",
+        "passwordPlaceholder": "••••••••",
+        "role": "Berechtigungsrolle",
+        "role1": "Außendienst (Rolle 1)",
+        "role2": "Filialleiter (Rolle 2)",
+        "role3": "Eigentümer / Admin (Rolle 3)",
+        "submit": "MITARBEITER SPEICHERN",
+        "submitting": "Konto wird erstellt...",
+        "success": "Mitarbeiter erfolgreich hinzugefügt.",
+        "errorPassword": "Passwort muss mindestens 6 Zeichen lang sein.",
+        "errorCreate": "Benutzer konnte nicht erstellt werden."
+      },
+      "list": {
+        "title": "Aktuelle Mitarbeiterliste",
+        "userCount": "Benutzer",
+        "headerName": "Mitarbeiter",
+        "headerRole": "Berechtigungsstufe",
+        "headerAction": "Aktion",
+        "empty": "Noch kein Personal definiert.",
+        "role1": "MITARBEITER",
+        "role2": "LEITER"
+      },
+      "detail": {
+        "title": "Mitarbeiterdetails",
+        "shopId": "SHOP-ID",
+        "roleManagement": "Berechtigungs- & Rollenmanagement",
+        "roleLabel": "Mitarbeiterrolle",
+        "updateButton": "AKTUALISIEREN",
+        "updateSuccess": "Mitarbeiterrolle aktualisiert.",
+        "updateError": "Ein Fehler ist aufgetreten.",
+        "auditTitle": "Letzte Aktionen des Mitarbeiters",
+        "auditLimit": "Letzte 10 Aktionen",
+        "auditTable": {
+          "product": "Produkt",
+          "type": "Aktion",
+          "quantity": "Menge",
+          "date": "Datum",
+          "empty": "Stille... Noch keine Aktionen.",
+          "typeIn": "EINGANG",
+          "typeOut": "AUSGANG",
+          "integrationSoon": "Verkaufsmodul-Integration bald verfügbar"
+        },
+        "deleteButton": "MITARBEITER AUS DEM SYSTEM ENTFERNEN",
+        "deleteConfirm": "Sind Sie sicher, dass Sie diesen Mitarbeiter löschen möchten?",
+        "deleteError": "Fehler beim Löschen."
+      }
+    }
+  },
+  "reviewQueue": {
+    "title": "Admin-Überprüfungswarteschlange",
+    "subtitle": "Fehlgeschlagene Datensynchronisationen überprüfen und beheben (DLQ).",
+    "refresh": "Liste aktualisieren",
+    "confirmDismiss": "Sind Sie sicher, dass Sie diesen Vorgang verwerfen möchten? Er wird dauerhaft aus der Liste gelöscht.",
+    "list": {
+      "title": "Fehlgeschlagene Synchronisationen",
+      "itemCount": "fehlgeschlagene Vorgänge",
+      "headerTable": "Tabelle",
+      "headerAction": "Aktion",
+      "headerError": "Fehlermeldung",
+      "headerActionBtn": "Anzeigen",
+      "empty": "Alle Synchronisationsvorgänge wurden erfolgreich abgeschlossen. Keine Fehler gefunden!"
+    },
+    "detail": {
+      "title": "Details zum Vorgang",
+      "correlationId": "Korrelations-ID",
+      "errorMessage": "Fehlermeldung",
+      "payload": "Nutzdaten (JSON)",
+      "discard": "Verwerfen",
+      "retry": "Erneut versuchen",
+      "selectHint": "Wählen Sie ein Element aus der Liste aus, um Details anzuzeigen und den Vorgang zu lösen."
+    },
+    "toasts": {
+      "fetchError": "Überprüfungswarteschlange konnte nicht abgerufen werden.",
+      "retrySuccess": "Wiederholungsvorgang erfolgreich in Warteschlange eingereiht.",
+      "retryError": "Wiederholungsversuch fehlgeschlagen.",
+      "dismissSuccess": "Vorgang erfolgreich verworfen.",
+      "dismissError": "Vorgang konnte nicht verworfen werden."
+    }
+  }
+}

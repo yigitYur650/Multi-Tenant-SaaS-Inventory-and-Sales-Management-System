@@ -1,0 +1,519 @@
+{
+  "menu": {
+    "dashboard": "ダッシュボード",
+    "inventory": "在庫管理",
+    "sales": "販売管理",
+    "reports": "レポート",
+    "admin": "管理者パネル",
+    "reviewQueue": "同期DLQ",
+    "signout": "ログアウト",
+    "change_password": "パスワード変更"
+  },
+  "common": {
+    "welcome": "ようこそ",
+    "loading": "読み込み中...",
+    "locale": "ja-JP",
+    "unknown": "不明",
+    "error": "エラー"
+  },
+  "layout": {
+    "connection": {
+      "success": "接続成功",
+      "error": "接続エラー / サンドボックス",
+      "connecting": "接続中..."
+    },
+    "switcher": {
+      "title": "言語を切り替える"
+    },
+    "sync": {
+      "synced": "すべてのデータが同期されました",
+      "pending": "オフラインの保留中トランザクションが{{count}}件あります",
+      "syncing": "変更を同期中...",
+      "error": "{{count}}件の同期エラーが発生しました",
+      "tooltip_synced": "システムはオンラインで、データベースは完全に同期されています。",
+      "tooltip_pending": "オフラインであるか、同期待ちのトランザクションがあります。",
+      "tooltip_error": "一部のトランザクションの同期に失敗しました。クリックしてエラーを表示します。"
+    },
+    "storage": {
+      "warning_title": "ストレージ空き容量低下",
+      "warning_message": "ブラウザのストレージ容量が{{percentage}}%使用されています。データ損失を避けるため、空き容量を確保してください。"
+    }
+  },
+  "roles": {
+    "PATRON": "オーナー",
+    "CALISAN": "スタッフ"
+  },
+  "inventory": {
+    "title": "在庫追跡",
+    "subtitle": "システム全体の在庫移動と製品を管理します。",
+    "buttons": {
+      "report": "レポート出力 (PDF)",
+      "manageCategories": "カテゴリ管理",
+      "addNew": "新規製品登録"
+    },
+    "filters": {
+      "searchPlaceholder": "製品を検索...",
+      "allCategories": "すべてのカテゴリ",
+      "color": "色",
+      "size": "サイズ",
+      "reset": "フィルタをリセット"
+    },
+    "product": {
+      "noCategory": "一般",
+      "details": "詳細 / 編集",
+      "stockAction": "在庫操作",
+      "noProductFound": "一致する製品が見つかりません。",
+      "sku": "SKU",
+      "stock": "在庫",
+      "adminOnly": "管理者のみアクセス可能",
+      "deleteConfirm": "この製品は削除されます。よろしいですか？",
+      "deleteNoAuth": "削除権限がありません。",
+      "editNoAuth": "オーナーのみが製品詳細を編集できます。"
+    },
+    "stockModal": {
+      "title": "在庫操作",
+      "variantSelection": "バリエーション選択",
+      "addStock": "入庫",
+      "removeStock": "出庫",
+      "quantity": "操作数量",
+      "unit": "個",
+      "currentStock": "現在の在庫",
+      "newStock": "操作後の在庫",
+      "confirm": "確定",
+      "cancel": "キャンセル",
+      "success": "操作が完了しました。",
+      "error": "操作に失敗しました。",
+      "quantityError": "有効な数量を入力してください。",
+      "negativeStockWarning": "注意: この操作により在庫がマイナスになります。続行しますか？"
+    }
+  },
+  "productForm": {
+    "titleNew": "新規製品登録",
+    "titleEdit": "製品編集 (管理者)",
+    "step1": "1. 基本情報",
+    "step2": "2. 製品バリエーション",
+    "categoryLabel": "カテゴリ / 製品種別",
+    "selectPlaceholder": "選択してください...",
+    "descriptionLabel": "簡単な説明",
+    "descriptionPlaceholder": "例: 2024年冬モデル...",
+    "addVariant": "バリエーション追加",
+    "colorLabel": "色",
+    "sizeLabel": "サイズ / 寸法",
+    "stockLabel": "在庫",
+    "criticalStockLabel": "適正在庫 (アラートしきい値)",
+    "priceLabel": "販売価格 (¥)",
+    "skuLabel": "バーコード/SKU",
+    "skuPlaceholder": "自動登録",
+    "noVariant": "この製品のバリエーションはありません。",
+    "addVariantNow": "バリエーションを追加してください",
+    "auditTrail": "最新の在庫移動 (監査ログ)",
+    "saveAll": "すべて保存",
+    "saveChanges": "変更を保存",
+    "saving": "保存中...",
+    "cancel": "キャンセル",
+    "errors": {
+      "selectCategory": "製品カテゴリを選択してください。",
+      "selectColorSize": "各バリエーションの色とサイズを選択してください。",
+      "setThreshold": "各バリエーションの適正在庫値を設定してください。",
+      "generic": "製品の保存中にエラーが発生しました:"
+    }
+  },
+  "categoryManager": {
+    "title": "カテゴリ管理",
+    "tabs": {
+      "active": "有効なカテゴリ",
+      "trash": "ゴミ箱"
+    },
+    "addCategory": "カテゴリ追加",
+    "formTitle": "カテゴリ詳細",
+    "nameLabel": "カテゴリ名",
+    "namePlaceholder": "例: テキスタイル、家具...",
+    "parentLabel": "親カテゴリ (任意)",
+    "makeParent": "親カテゴリにする",
+    "createButton": "カテゴリ作成",
+    "creating": "追加中...",
+    "noCategoryFound": "カテゴリが見つかりません。",
+    "trashEmpty": "ゴミ箱は空です。",
+    "loading": "読み込み中...",
+    "deletedAt": "削除日:",
+    "restore": "復元",
+    "permanentDelete": "完全に削除",
+    "confirmTrash": "カテゴリをゴミ箱に移動しますか？",
+    "confirmPermanent": "注意: このカテゴリは完全に削除され、復元できません。よろしいですか？",
+    "under": "所属先:",
+    "history": {
+      "date": "日付",
+      "user": "実行者",
+      "type": "操作",
+      "previous": "以前",
+      "change": "変更",
+      "result": "結果",
+      "in": "入庫",
+      "out": "出庫",
+      "system": "システム",
+      "records": "レコード",
+      "loading": "データを読み込み中..."
+    },
+    "messages": {
+      "addSuccess": "カテゴリが追加されました",
+      "addError": "カテゴリ追加エラー",
+      "updateSuccess": "カテゴリを更新しました",
+      "updateError": "更新に失敗しました",
+      "restoreSuccess": "カテゴリを復元しました",
+      "restoreError": "復元に失敗しました",
+      "deleteSuccess": "ゴミ箱に移動しました",
+      "deleteError": "このカテゴリは削除できません。製品やサブカテゴリが含まれている可能性があります。",
+      "forceDeleteSuccess": "完全に削除されました",
+      "forceDeleteError": "完全削除に失敗しました",
+      "fetchError": "削除済みカテゴリを読み込めませんでした"
+    }
+  },
+  "sales": {
+    "searchPlaceholder": "製品を検索...",
+    "recentActions": "最近の履歴",
+    "noProductFound": "条件に合う製品が見つかりません。",
+    "categoryGeneral": "一般",
+    "unitPrice": "単価",
+    "stock": "在庫",
+    "cart": {
+      "title": "カート",
+      "items": "製品",
+      "empty": "カートは空です",
+      "emptySubtitle": "販売する製品を選択してください。",
+      "rowTotal": "小計"
+    },
+    "summary": {
+      "cash": "現金",
+      "card": "カード",
+      "mailOrder": "通販",
+      "total": "合計金額",
+      "complete": "販売完了",
+      "success": "販売が完了しました！"
+    },
+    "history": {
+      "title": "販売履歴・レポート",
+      "period": {
+        "daily": "本日",
+        "weekly": "今週",
+        "monthly": "今月",
+        "yearly": "今年",
+        "all": "全期間"
+      },
+      "downloadReport": "レポートをダウンロード",
+      "totalRevenue": "総売上",
+      "saleCount": "販売件数",
+      "transaction": "取引",
+      "listTitle": "販売リスト",
+      "noSales": "選択期間の販売データはありません",
+      "detailTitle": "取引詳細",
+      "printReceipt": "レシート印刷",
+      "cashier": "担当者",
+      "returned": "返品済み",
+      "takeReturn": "返品処理",
+      "returnedInfo": "({{count}} 件の返品)"
+    },
+    "return": {
+      "title": "返品処理",
+      "product": "返品製品",
+      "quantity": "返品数量",
+      "maxQty": "最大: {{count}} 個",
+      "reason": "返品理由",
+      "totalReturn": "返金金額",
+      "confirm": "返品を確定する",
+      "cancel": "キャンセル",
+      "success": "返品が完了しました。",
+      "error": "返品に失敗しました: ",
+      "reasons": {
+        "defective": "不良品",
+        "sizeMismatch": "サイズ不適合",
+        "changedMind": "お客様都合",
+        "other": "その他"
+      }
+    },
+    "checkout": {
+      "title": "お会計",
+      "options": "支払い方法",
+      "paymentMethods": {
+        "cash": "現金",
+        "card": "クレジットカード",
+        "mailOrder": "メールオーダー",
+        "fast": "クイック会計"
+      },
+      "customerInfo": "お客様名 / メモ (任意)",
+      "customerPlaceholder": "例: 山田太郎 - 090...",
+      "cashier": "担当者",
+      "totalCollection": "合計受取額",
+      "confirm": "注文を確定する",
+      "processing": "処理中..."
+    },
+    "receipt": {
+      "title": "SAAS TEXTILE ERP",
+      "date": "日付",
+      "receiptNo": "レシートNo",
+      "itemHeader": "品名 / 数量",
+      "totalHeader": "金額",
+      "total": "合計",
+      "payment": "支払",
+      "cashier": "担当",
+      "footer1": "*** ありがとうございました ***",
+      "footer2": "システム出力レシート"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "ログイン",
+      "subtitle": "SaaS ERPへ安全にアクセスしてください。",
+      "emailPlaceholder": "メールアドレス",
+      "passwordPlaceholder": "パスワード",
+      "forgotPassword": "パスワードを忘れた場合",
+      "button": "ログイン",
+      "noAccount": "アカウントをお持ちでないですか？",
+      "registerNow": "新規登録",
+      "error": "ログイン中にエラーが発生しました"
+    },
+    "forgot": {
+      "title": "パスワードのリセット",
+      "subtitle": "登録済みのメールアドレスを入力してください。",
+      "success": "✅ パスワードリセット用のリンクをメールで送信しました。",
+      "backToLogin": "ログイン画面に戻る",
+      "sendButton": "リセットリンクを送信",
+      "sending": "送信中..."
+    },
+    "register": {
+      "title": "店舗アカウント作成",
+      "subtitle": "販売・在庫・分析システムを開始しましょう。",
+      "fullNamePlaceholder": "お名前",
+      "shopNamePlaceholder": "店舗名 / 会社名",
+      "emailPlaceholder": "メールアドレス",
+      "passwordPlaceholder": "安全なパスワード",
+      "button": "オーナーアカウントを作成",
+      "hasAccount": "既にアカウントをお持ちですか？",
+      "loginNow": "ログイン",
+      "error": "登録中にエラーが発生しました"
+    }
+  },
+  "dashboard": {
+    "title": "ダッシュボード",
+    "subtitle": "ようこそ、本日のビジネスサマリーです。",
+    "loading": "統計を準備中...",
+    "error": "データの読み込み中にエラーが発生しました。",
+    "errorTitle": "読み込み失敗",
+    "retry": "再試行",
+    "dailyRevenue": "本日の売上",
+    "registeredProducts": "登録製品数",
+    "saleCount": "販売数",
+    "criticalStock": "在庫アラート",
+    "performanceTitle": "販売パフォーマンス (売れ筋バリエーション)",
+    "noData": "十分なデータがありません",
+    "unitProduct": "製品"
+  },
+  "passwordUpdate": {
+    "title": "パスワード変更",
+    "forcedTitle": "パスワード設定",
+    "securityCheck": "セキュリティチェック",
+    "forcedSubtitle": "アカウントの復旧が完了しました。新しいパスワードを設定してください。",
+    "regularSubtitle": "セキュリティのため定期的なパスワード変更をお勧めします。",
+    "successTitle": "更新完了",
+    "successMessage": "一度ログアウトします。新しいパスワードで再度ログインしてください...",
+    "newPassword": "新しいパスワード",
+    "confirmPassword": "確認用パスワード",
+    "saveButton": "保存して再起動",
+    "updating": "更新中...",
+    "cancel": "キャンセル",
+    "minLengthError": "6文字以上で入力してください。",
+    "matchError": "パスワードが一致しません。",
+    "error": "更新中にエラーが発生しました。"
+  },
+  "reports": {
+    "title": "高度な分析",
+    "subtitle": "ビジネスのパフォーマンスを詳細に確認します。",
+    "filters": {
+      "daily": "日次",
+      "weekly": "週次",
+      "monthly": "月次",
+      "yearly": "年次"
+    },
+    "kpi": {
+      "totalRevenue": "総売上",
+      "paymentDistribution": "支払い内訳",
+      "totalRefund": "総返品額",
+      "netProfit": "純利益"
+    },
+    "charts": {
+      "salesTrends": "売上推移",
+      "amountLabel": "売上額 (¥)"
+    },
+    "performance": {
+      "topSelling": "売れ筋ランキング",
+      "nonSelling": "滞留在庫",
+      "unitPiece": "個",
+      "noSalesPeriod": "対象期間の販売はありません。",
+      "allProductsSold": "すべての製品に動きがあります！",
+      "zeroSales": "販売なし"
+    }
+  },
+  "errorBoundary": {
+    "title": "申し訳ありません、問題が発生しました。",
+    "message": "予期しないエラーによりアプリケーションが停止しました。",
+    "refreshButton": "リロード"
+  },
+  "pdf": {
+    "receipt": {
+      "title": "販売証明書",
+      "date": "日付",
+      "receiptNo": "No",
+      "cashier": "担当",
+      "itemHeader": "製品名",
+      "qtyHeader": "数量",
+      "amountHeader": "金額",
+      "total": "総合計",
+      "paymentType": "決済方法",
+      "thankYou1": "ご利用",
+      "thankYou2": "ありがとうございました。"
+    },
+    "inventory": {
+      "title": "在庫レポート",
+      "date": "出力日",
+      "headers": {
+        "name": "製品名",
+        "sku": "SKU",
+        "variant": "色/サイズ",
+        "stock": "在庫",
+        "price": "価格"
+      }
+    },
+    "sales": {
+      "title": "販売レポート",
+      "date": "出力日",
+      "periods": {
+        "daily": "日次",
+        "weekly": "週次",
+        "monthly": "月次",
+        "yearly": "年次",
+        "all": "全期間"
+      },
+      "headers": {
+        "date": "日付",
+        "saleId": "販売ID",
+        "itemCount": "製品数",
+        "total": "合計金額"
+      },
+      "grandTotal": "総合計"
+    }
+  },
+  "admin": {
+    "title": "管理者パネル",
+    "subtitle": "権限を持つユーザーのみがマスターデータを管理できます。",
+    "unauthorized": {
+      "title": "アクセス権限がありません",
+      "message": "このページを表示するにはオーナー権限が必要です。"
+    },
+    "masterData": {
+      "categories": {
+        "title": "カテゴリ管理",
+        "placeholder": "新規カテゴリ",
+        "errorAdd": "カテゴリ追加エラー"
+      },
+      "colors": {
+        "title": "色設定",
+        "placeholder": "色の名前 (ブラックなど)",
+        "errorAdd": "色追加エラー"
+      },
+      "sizes": {
+        "title": "サイズ設定",
+        "placeholder": "サイズ (S, M, Lなど)",
+        "errorAdd": "サイズ追加エラー"
+      },
+      "common": {
+        "errorDelete": "削除エラー"
+      }
+    },
+    "staff": {
+      "title": "スタッフ・ユーザー管理",
+      "subtitle": "店舗スタッフの管理と新規アカウント作成。",
+      "addForm": {
+        "title": "スタッフを追加",
+        "fullName": "氏名",
+        "fullNamePlaceholder": "例: 山田 太郎",
+        "email": "メールアドレス",
+        "emailPlaceholder": "staff@store.com",
+        "password": "仮パスワード",
+        "passwordPlaceholder": "••••••••",
+        "role": "権限",
+        "role1": "フィールドスタッフ (Role 1)",
+        "role2": "店長 (Role 2)",
+        "role3": "オーナー / 管理者 (Role 3)",
+        "submit": "スタッフを保存",
+        "submitting": "アカウント作成中...",
+        "success": "スタッフが追加されました。",
+        "errorPassword": "パスワードは6文字以上必要です。",
+        "errorCreate": "ユーザーを作成できませんでした。"
+      },
+      "list": {
+        "title": "スタッフ一覧",
+        "userCount": "ユーザー",
+        "headerName": "氏名",
+        "headerRole": "権限レベル",
+        "headerAction": "操作",
+        "empty": "スタッフが登録されていません。",
+        "role1": "スタッフ",
+        "role2": "マネージャー"
+      },
+      "detail": {
+        "title": "スタッフ詳細",
+        "shopId": "店舗ID",
+        "roleManagement": "権限・役割設定",
+        "roleLabel": "スタッフ権限",
+        "updateButton": "更新",
+        "updateSuccess": "権限を更新しました。",
+        "updateError": "エラーが発生しました。",
+        "auditTitle": "最近の操作履歴",
+        "auditLimit": "直近10件",
+        "auditTable": {
+          "product": "製品",
+          "type": "操作",
+          "quantity": "数量",
+          "date": "日付",
+          "empty": "履歴はありません。",
+          "typeIn": "入庫",
+          "typeOut": "出庫",
+          "integrationSoon": "販売モジュール連携（準備中）"
+        },
+        "deleteButton": "システムから削除",
+        "deleteConfirm": "このスタッフを削除してもよろしいですか？",
+        "deleteError": "削除中にエラーが発生しました。"
+      }
+    }
+  },
+  "reviewQueue": {
+    "title": "管理者レビューキュー",
+    "subtitle": "失敗したデータ同期操作（DLQ）を確認して解決します。",
+    "refresh": "リストを更新",
+    "confirmDismiss": "この操作を破棄してもよろしいですか？ 失敗した同期リストから完全に削除されます。",
+    "list": {
+      "title": "同期エラー一覧",
+      "itemCount": "件のエラー操作",
+      "headerTable": "テーブル",
+      "headerAction": "アクション",
+      "headerError": "エラーメッセージ",
+      "headerActionBtn": "詳細表示",
+      "empty": "すべての同期操作が正常に完了しました。エラーはありません！"
+    },
+    "detail": {
+      "title": "操作詳細",
+      "correlationId": "相関ID (Correlation ID)",
+      "errorMessage": "エラーメッセージ",
+      "payload": "ペイロード (JSON)",
+      "discard": "破棄する",
+      "retry": "再試行する",
+      "selectHint": "詳細を表示し、操作を解決するには、リストからアイテムを選択してください。"
+    },
+    "toasts": {
+      "fetchError": "レビューキューの取得に失敗しました。",
+      "retrySuccess": "再試行がキューに追加されました。",
+      "retryError": "操作の再試行に失敗しました。",
+      "dismissSuccess": "操作が破棄されました。",
+      "dismissError": "操作の破棄に失敗しました。"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .glass {
+    @apply bg-white bg-opacity-70 backdrop-blur-lg border border-white/20 shadow-lg;
+  }
+  .glass-dark {
+    @apply bg-gray-900 bg-opacity-70 backdrop-blur-lg border border-gray-700/50 shadow-xl;
+  }
+}
+
+body {
+  @apply min-h-screen bg-slate-50 text-slate-800;
+}
