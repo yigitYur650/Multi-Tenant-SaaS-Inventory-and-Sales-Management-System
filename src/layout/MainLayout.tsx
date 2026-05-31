@@ -64,12 +64,12 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   }, [addToast]);
 
   const menuItems = [
-    { icon: LayoutDashboard, label: t('menu.dashboard'), path: '/' },
+    { icon: LayoutDashboard, label: t('menu.dashboard'), path: '/', end: true },
     { icon: Package, label: t('menu.inventory'), path: '/inventory' },
     { icon: ShoppingCart, label: t('menu.sales'), path: '/sales' },
     { icon: BarChart2, label: t('menu.reports'), path: '/reports' },
     ...(isAdmin ? [
-      { icon: Shield, label: t('menu.admin'), path: '/admin' },
+      { icon: Shield, label: t('menu.admin'), path: '/admin', end: true },
       { icon: ShieldAlert, label: t('menu.reviewQueue'), path: '/admin/review-queue' }
     ] : []),
   ];
@@ -186,6 +186,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
               <NavLink
                 key={idx}
                 to={item.path}
+                end={item.end}
                 className={({ isActive }) => {
                   const colors = getColors(isActive);
                   return `w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all duration-300 group relative overflow-hidden border ${colors.bg} ${colors.text} ${colors.border}`;

@@ -107,10 +107,10 @@ export function AdminReviewQueue() {
   if (!isAdmin) {
     return (
       <PageTransition className="flex items-center justify-center p-8">
-        <div className="text-center bg-slate-800/40 backdrop-blur-3xl border border-white/10 p-8 rounded-3xl shadow-xl flex flex-col items-center max-w-sm">
+        <div className="text-center bg-white p-8 rounded-3xl shadow-xl flex flex-col items-center max-w-sm border border-slate-100">
            <ShieldAlert size={64} className="text-rose-500 mb-4" />
-           <h2 className="text-xl font-bold text-slate-100">{t('admin.unauthorized.title')}</h2>
-           <p className="text-sm text-slate-400 mt-2">{t('admin.unauthorized.message')}</p>
+           <h2 className="text-xl font-bold text-slate-800">{t('admin.unauthorized.title')}</h2>
+           <p className="text-sm text-slate-500 mt-2">{t('admin.unauthorized.message')}</p>
         </div>
       </PageTransition>
     );
@@ -120,16 +120,16 @@ export function AdminReviewQueue() {
     <PageTransition className="pb-8">
       <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-white flex items-center gap-3">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900 flex items-center gap-3">
             <ShieldAlert size={28} className="text-amber-500" />
             {t('reviewQueue.title')}
           </h1>
-          <p className="text-sm text-slate-400 mt-1">{t('reviewQueue.subtitle')}</p>
+          <p className="text-sm text-gray-500 mt-1">{t('reviewQueue.subtitle')}</p>
         </div>
         <button 
           onClick={fetchFailedSyncs}
           disabled={loading}
-          className="flex items-center gap-2 px-4 py-2 bg-slate-800 border border-white/10 hover:bg-slate-700/80 text-slate-200 rounded-xl text-sm font-semibold transition-all disabled:opacity-50"
+          className="flex items-center gap-2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-sm font-semibold transition-all disabled:opacity-50"
         >
           <RefreshCw size={16} className={loading ? 'animate-spin' : ''} />
           {t('reviewQueue.refresh')}
@@ -138,10 +138,10 @@ export function AdminReviewQueue() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left: Queue List */}
-        <div className="lg:col-span-8 bg-slate-800/40 backdrop-blur-3xl border border-white/10 rounded-[32px] overflow-hidden shadow-xl flex flex-col">
-          <div className="p-6 bg-slate-850/50 border-b border-white/5 flex justify-between items-center">
-            <h4 className="font-bold text-slate-200 tracking-tight">{t('reviewQueue.list.title')}</h4>
-            <span className="text-xs bg-slate-900/60 px-3 py-1 rounded-full border border-white/5 font-semibold text-slate-400">
+        <div className="lg:col-span-8 bg-white border border-slate-100 rounded-[32px] overflow-hidden shadow-xl shadow-slate-200/50 flex flex-col">
+          <div className="p-6 bg-slate-50 border-b border-slate-100 flex justify-between items-center">
+            <h4 className="font-black text-slate-800 tracking-tight">{t('reviewQueue.list.title')}</h4>
+            <span className="text-xs bg-white px-3 py-1 rounded-full border border-slate-200 font-semibold text-slate-500">
               {items.length} {t('reviewQueue.list.itemCount')}
             </span>
           </div>
@@ -149,26 +149,26 @@ export function AdminReviewQueue() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="text-[10px] font-black uppercase text-slate-400 tracking-widest border-b border-white/5 bg-slate-900/20">
+                <tr className="text-[10px] font-black uppercase text-slate-400 tracking-widest border-b border-slate-100 bg-slate-50/50">
                   <th className="px-6 py-4">{t('reviewQueue.list.headerTable')}</th>
                   <th className="px-6 py-4">{t('reviewQueue.list.headerAction')}</th>
                   <th className="px-6 py-4">{t('reviewQueue.list.headerError')}</th>
                   <th className="px-6 py-4 text-right">{t('reviewQueue.list.headerActionBtn')}</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/5">
+              <tbody className="divide-y divide-slate-100">
                 {loading ? (
                   [...Array(3)].map((_, i) => (
                     <tr key={i} className="animate-pulse">
-                      <td colSpan={4} className="px-6 py-6 text-center text-slate-500">
-                        <div className="h-4 bg-slate-700/50 rounded w-1/4 mx-auto mb-2"></div>
-                        <div className="h-3 bg-slate-700/30 rounded w-1/2 mx-auto"></div>
+                      <td colSpan={4} className="px-6 py-6 text-center text-slate-400">
+                        <div className="h-4 bg-slate-200 rounded w-1/4 mx-auto mb-2"></div>
+                        <div className="h-3 bg-slate-100 rounded w-1/2 mx-auto"></div>
                       </td>
                     </tr>
                   ))
                 ) : items.length === 0 ? (
                   <tr>
-                    <td colSpan={4} className="px-6 py-20 text-center text-slate-400 italic">
+                    <td colSpan={4} className="px-6 py-20 text-center text-slate-500 italic">
                       <div className="flex flex-col items-center justify-center gap-3">
                         <CheckCircle2 size={48} className="text-emerald-500" />
                         <span>{t('reviewQueue.list.empty')}</span>
@@ -182,25 +182,25 @@ export function AdminReviewQueue() {
                       <tr 
                         key={item.id} 
                         onClick={() => setSelectedItem(item)}
-                        className={`hover:bg-white/5 transition-colors cursor-pointer ${isSelected ? 'bg-white/5' : ''}`}
+                        className={`hover:bg-slate-50 transition-colors cursor-pointer ${isSelected ? 'bg-slate-50' : ''}`}
                       >
-                        <td className="px-6 py-4 font-bold text-slate-200">
+                        <td className="px-6 py-4 font-bold text-slate-800">
                           <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-wider ${
-                            item.table === 'sales' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' :
-                            item.table === 'product_variants' ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' :
-                            'bg-blue-500/10 text-blue-400 border border-blue-500/20'
+                            item.table === 'sales' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200/50' :
+                            item.table === 'product_variants' ? 'bg-amber-50 text-amber-700 border border-amber-200/50' :
+                            'bg-blue-50 text-blue-700 border border-blue-200/50'
                           }`}>
                             {item.table}
                           </span>
                         </td>
-                        <td className="px-6 py-4 font-mono text-xs text-slate-300 uppercase font-bold">
+                        <td className="px-6 py-4 font-mono text-xs text-slate-600 uppercase font-bold">
                           {item.action || item.payload?.action || 'INSERT'}
                         </td>
-                        <td className="px-6 py-4 text-xs text-rose-400 font-medium max-w-xs truncate" title={item.error_message}>
+                        <td className="px-6 py-4 text-xs text-rose-600 font-medium max-w-xs truncate" title={item.error_message}>
                           {item.error_message}
                         </td>
                         <td className="px-6 py-4 text-right">
-                          <button className="p-1.5 hover:bg-slate-700/50 rounded-lg text-slate-400 hover:text-white transition-colors">
+                          <button className="p-1.5 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-slate-700 transition-colors">
                             <Eye size={16} />
                           </button>
                         </td>
@@ -215,9 +215,9 @@ export function AdminReviewQueue() {
 
         {/* Right: Item Detail Side-Panel */}
         <div className="lg:col-span-4 space-y-6">
-          <div className="bg-slate-800/40 backdrop-blur-3xl border border-white/10 rounded-[32px] p-6 shadow-xl flex flex-col h-full min-h-[400px]">
-            <h3 className="font-bold text-slate-200 mb-4 border-b border-white/5 pb-3 flex items-center gap-2">
-              <Layers size={18} className="text-blue-400" />
+          <div className="bg-white border border-slate-100 rounded-[32px] p-6 shadow-xl shadow-slate-200/50 flex flex-col h-full min-h-[400px]">
+            <h3 className="font-black text-slate-800 mb-4 border-b border-slate-100 pb-3 flex items-center gap-2">
+              <Layers size={18} className="text-blue-500" />
               {t('reviewQueue.detail.title')}
             </h3>
 
@@ -225,37 +225,37 @@ export function AdminReviewQueue() {
               <div className="flex-1 flex flex-col justify-between h-full space-y-6">
                 <div className="space-y-4 overflow-y-auto max-h-[350px] pr-2 custom-scrollbar">
                   <div>
-                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-1">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">
                       {t('reviewQueue.detail.correlationId')}
                     </label>
-                    <div className="p-2 bg-slate-900/60 rounded-xl font-mono text-[10px] text-slate-300 border border-white/5 select-all break-all">
+                    <div className="p-2 bg-slate-50 rounded-xl font-mono text-[10px] text-slate-600 border border-slate-100 select-all break-all">
                       {selectedItem.correlation_id || 'N/A'}
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-1">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">
                       {t('reviewQueue.detail.errorMessage')}
                     </label>
-                    <div className="p-3 bg-rose-500/10 rounded-xl border border-rose-500/20 text-xs font-semibold text-rose-400">
+                    <div className="p-3 bg-rose-550/10 rounded-xl border border-rose-100 text-xs font-semibold text-rose-600 bg-rose-50">
                       {selectedItem.error_message}
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-1">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">
                       {t('reviewQueue.detail.payload')}
                     </label>
-                    <pre className="p-3 bg-slate-900/80 rounded-xl font-mono text-[10px] text-blue-300 border border-white/5 overflow-x-auto max-h-48 whitespace-pre-wrap select-all">
+                    <pre className="p-3 bg-slate-50 rounded-xl font-mono text-[10px] text-blue-600 border border-slate-100 overflow-x-auto max-h-48 whitespace-pre-wrap select-all">
                       {JSON.stringify(selectedItem.payload, null, 2)}
                     </pre>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-white/5 grid grid-cols-2 gap-4">
+                <div className="pt-4 border-t border-slate-100 grid grid-cols-2 gap-4">
                   <button 
                     onClick={() => handleDismiss(selectedItem)}
-                    className="w-full flex items-center justify-center gap-2 p-3 bg-slate-900/40 border border-white/10 hover:bg-rose-500/10 hover:border-rose-500/20 hover:text-rose-400 text-slate-300 rounded-xl text-xs font-black transition-all active:scale-95"
+                    className="w-full flex items-center justify-center gap-2 p-3 bg-slate-50 border border-slate-200 hover:bg-rose-50 hover:border-rose-200 hover:text-rose-600 text-slate-600 rounded-xl text-xs font-black transition-all active:scale-95"
                   >
                     <Trash2 size={14} />
                     {t('reviewQueue.detail.discard')}
@@ -270,8 +270,8 @@ export function AdminReviewQueue() {
                 </div>
               </div>
             ) : (
-              <div className="flex-1 flex flex-col items-center justify-center text-slate-400/80 text-center py-20">
-                <HelpCircle size={40} className="text-slate-500/50 mb-3" />
+              <div className="flex-1 flex flex-col items-center justify-center text-slate-400 text-center py-20">
+                <HelpCircle size={40} className="text-slate-350 mb-3" />
                 <p className="text-sm font-semibold">{t('reviewQueue.detail.selectHint')}</p>
               </div>
             )}
