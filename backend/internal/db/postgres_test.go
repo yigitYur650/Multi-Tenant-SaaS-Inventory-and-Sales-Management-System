@@ -150,6 +150,21 @@ func TestTenantRLSLeakage(t *testing.T) {
 		t.Fatalf("Failed to mock JWT claims session config: %v", err)
 	}
 
+	// CRITICAL: Switch to 'authenticated' role so PostgreSQL enforces RLS.
+	// Superusers (like 'postgres') ALWAYS bypass RLS — this is why the test
+	// was leaking. SET LOCAL ROLE drops us to a non-privileged role within
+	// this transaction only, exactly mirroring how Supabase works at runtime.
+	_, err = tx.Exec(ctx, "SET LOCAL ROLE authenticated")
+	if err != nil {
+		t.Fatalf("Failed to switch to 'authenticated' role: %v\nHint: ensure the 'authenticated' role has SELECT/INSERT/UPDATE/DELETE privileges on public.products", err)
+	}
+
+	// Also explicitly enable row security for this session (belt-and-suspenders).
+	_, err = tx.Exec(ctx, "SET LOCAL row_security = on")
+	if err != nil {
+		t.Fatalf("Failed to enable row_security: %v", err)
+	}
+
 	// A. SELECT TEST: Tenant A must NOT be able to see Tenant B's product
 	var count int
 	err = tx.QueryRow(ctx, "SELECT count(*) FROM products WHERE id = $1", prodB).Scan(&count)
