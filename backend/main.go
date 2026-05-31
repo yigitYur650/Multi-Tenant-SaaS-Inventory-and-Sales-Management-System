@@ -133,8 +133,9 @@ func main() {
 
 	// API Endpoints for DLQ (Admin Review Queue)
 	app.Get("/api/v1/sync/dlq", func(c *fiber.Ctx) error {
-		rows, err := pool.Query(c.UserContext(), "SELECT id, payload, error_message, retry_count, created_at, correlation_id FROM failed_syncs ORDER BY created_at DESC")
+		rows, err := pool.Query(c.UserContext(), "SELECT id, payload, error_message, COALESCE(retry_count, 0), created_at, correlation_id FROM failed_syncs ORDER BY created_at DESC")
 		if err != nil {
+			db.LogJSON(c.UserContext(), "ERROR", "Failed to query failed_syncs table", map[string]interface{}{"error": err.Error()})
 			return c.Status(500).JSON(fiber.Map{"error": err.Error()})
 		}
 		defer rows.Close()
@@ -156,6 +157,7 @@ func main() {
 			var errMsg *string
 			err := rows.Scan(&item.ID, &payloadJSON, &errMsg, &item.RetryCount, &item.CreatedAt, &correlationID)
 			if err != nil {
+				db.LogJSON(c.UserContext(), "ERROR", "Failed to scan row from failed_syncs", map[string]interface{}{"error": err.Error()})
 				return c.Status(500).JSON(fiber.Map{"error": err.Error()})
 			}
 			if errMsg != nil {

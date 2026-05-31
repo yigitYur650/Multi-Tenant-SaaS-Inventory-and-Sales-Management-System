@@ -26,7 +26,14 @@ export function AdminReviewQueue() {
           const data = await response.json();
           setItems(data || []);
         } else {
-          throw new Error('Could not fetch DLQ from server');
+          let errMsg = t('reviewQueue.toasts.fetchError');
+          try {
+            const errData = await response.json();
+            if (errData && errData.error) {
+              errMsg = `${errMsg}: ${errData.error}`;
+            }
+          } catch (_) {}
+          throw new Error(errMsg);
         }
       } else {
         const data = await db.failed_syncs.toArray();
@@ -34,7 +41,7 @@ export function AdminReviewQueue() {
       }
     } catch (err: any) {
       console.error(err);
-      addToast(t('reviewQueue.toasts.fetchError'), 'error');
+      addToast(err.message || t('reviewQueue.toasts.fetchError'), 'error');
       // Fallback to local Dexie even if Go fails
       const data = await db.failed_syncs.toArray();
       setItems(data || []);
