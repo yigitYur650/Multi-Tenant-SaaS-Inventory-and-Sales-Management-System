@@ -116,7 +116,7 @@ func TestTenantRLSLeakage(t *testing.T) {
 	}
 	defer func() { _, _ = pool.Exec(ctx, "DELETE FROM shops WHERE id = $1", tenantA) }()
 
-	_, err = pool.Exec(ctx, "INSERT INTO shops (id, name, type) VALUES ($2, $2, $3)", tenantB, "Tenant B", "TypeB")
+	_, err = pool.Exec(ctx, "INSERT INTO shops (id, name, type) VALUES ($1, $2, $3)", tenantB, "Tenant B", "TypeB")
 	if err != nil {
 		t.Fatalf("Failed to insert Tenant B: %v", err)
 	}
