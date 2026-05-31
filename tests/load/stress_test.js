@@ -3,61 +3,47 @@ import { check, sleep } from 'k6';
 import { uuidv4 } from 'https://jslib.k6.io/k6-utils/1.4.0/index.js';
 
 /**
- * Senior k6 Load Test Scenario
- * Amaç: 5.000+ VU altında Backpressure (503) ve DLQ mekanizmasını doğrulamak.
+ * Senior k6 Deadlock & Hot-Row Stress Test Scenario
+ * Amaç: 5.000+ VU altında aynı variant_id (Hot-Row) üzerinde yoğun UPDATE işlemlerinin
+ * kilitlenmeye (deadlock) yol açıp açmadığını doğrulamak.
  */
 
 export const options = {
   stages: [
-    { duration: '1m', target: 500 },  // Ramp-up: 0'dan 500 VU'ya
-    { duration: '3m', target: 1000 }, // Load Test: 1.000 VU sabit yük
-    { duration: '2m', target: 5000 }, // Stress Test: Sistemi kırmaya çalış (5.000 VU)
-    { duration: '1m', target: 0 },    // Recovery: Yükü sıfırla
+    { duration: '30s', target: 500 },   // Hızlı yüklenme
+    { duration: '1m', target: 2000 },   // 2000 VU'ya tırmanış
+    { duration: '2m', target: 5000 },   // Hot-Row'a 5.000 VU yüklenme (Stres Testi)
+    { duration: '30s', target: 0 },     // İyileşme süreci
   ],
   thresholds: {
-    // p(95) yanıt süresi 300ms altında olmalı
-    'http_req_duration': ['p(95)<300'],
-    // Genel hata oranı %2'nin altında olmalı (Özel kontrol aşağıda)
-    'http_req_failed': ['rate<0.02'],
+    // p(95) yanıt süresi 500ms altında olmalı
+    'http_req_duration': ['p(95)<500'],
+    // Genel hata oranı %5'in altında olmalı (Kilitlenmeler nedeniyle oluşabilecek hataları izlemek için)
+    'http_req_failed': ['rate<0.05'],
   },
 };
 
 const BASE_URL = 'http://localhost:3001/api/v1/sync/batch';
 
+// Hot-Row Testi için Sabit Ürün Varyant ID'si
+const HOT_ROW_VARIANT_ID = '550e8400-e29b-41d4-a716-446655440001';
+const MOCK_SHOP_ID = '550e8400-e29b-41d4-a716-446655440000';
+
 export default function () {
   const requestId = uuidv4();
-  
-  // Idempotency Testi: %2 ihtimalle sabit bir request_id gönder
-  const isDuplicate = Math.random() < 0.02;
-  const finalRequestId = isDuplicate ? 'stress-test-duplicate-id' : requestId;
 
+  // Tüm kullanıcılar aynı HOT_ROW_VARIANT_ID üzerinde stok güncellemesi yapıyor
   const payload = JSON.stringify({
     items: [
       {
-        table: 'sales',
-        action: 'INSERT',
-        request_id: finalRequestId,
+        table: 'product_variants',
+        action: 'UPDATE',
+        request_id: requestId,
         payload: {
-          id: uuidv4(),
-          shop_id: '550e8400-e29b-41d4-a716-446655440000', // Örnek shop_id
-          total_amount: Math.floor(Math.random() * 5000) + 100,
-          status: 'completed',
-          created_at: new Date().toISOString(),
-          version: 1
-        }
-      },
-      {
-        table: 'stock_movements',
-        action: 'INSERT',
-        request_id: uuidv4(), // Hareketler için yeni ID
-        payload: {
-          id: uuidv4(),
-          variant_id: uuidv4(),
-          quantity: Math.floor(Math.random() * 10) + 1,
-          type: 'OUT',
-          reason: 'Sale',
-          created_at: new Date().toISOString(),
-          version: 1
+          id: HOT_ROW_VARIANT_ID,
+          shop_id: MOCK_SHOP_ID,
+          delta: -1, // Her işlemde stoku 1 azaltmaya çalış
+          reason: 'Concurrent Hot-Row Sale',
         }
       }
     ]
@@ -66,21 +52,21 @@ export default function () {
   const params = {
     headers: {
       'Content-Type': 'application/json',
+      'X-Correlation-ID': uuidv4(),
     },
   };
 
   const res = http.post(BASE_URL, payload, params);
 
-  // Senior Kontrol Mantığı
   check(res, {
     // 200/202: İşlem kabul edildi
     'is accepted (200/202)': (r) => r.status === 200 || r.status === 202,
-    // 503: Backpressure devrede (Sistem kendini koruyor - Başarı!)
+    // 503: Backpressure devrede (Sistem kendini koruyor - Kabul edilebilir)
     'is backpressure (503)': (r) => r.status === 503,
-    // 500: Kritik hata (Panik, DB çökmesi vb. - HATA!)
-    'is NOT a critical 500': (r) => r.status !== 500,
+    // 500: Deadlock/Panic hatası olmamalı
+    'is NOT a database deadlock/error (500)': (r) => r.status !== 500,
   });
 
-  // Gerçekçi bekleme süresi (100ms - 600ms)
-  sleep(Math.random() * 0.5 + 0.1);
+  // Gerçekçi bekleme süresi (50ms - 200ms)
+  sleep(Math.random() * 0.15 + 0.05);
 }

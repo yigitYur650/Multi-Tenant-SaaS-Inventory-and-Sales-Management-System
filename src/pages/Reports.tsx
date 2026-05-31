@@ -165,7 +165,7 @@ export function Reports() {
       </div>
 
       {/* Main Chart */}
-      <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+      <div className="bg-white/70 backdrop-blur-md p-6 rounded-3xl border border-white/40 shadow-xl shadow-slate-200/30">
         <div className="flex items-center justify-between mb-8">
           <h3 className="text-xl font-bold text-slate-800">{t('reports.charts.salesTrends')}</h3>
           <div className="text-sm text-slate-400 font-medium">{t('reports.charts.amountLabel')}</div>
@@ -280,15 +280,15 @@ interface AccordionItemProps {
 // Alt Bileşenler (Yardımcı)
 function KPICard({ title, value, subValue, icon, color, loading }: KPICardProps) {
   return (
-    <div className={`p-6 rounded-3xl border border-slate-200 bg-white transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/5 ${loading ? 'opacity-60' : ''}`}>
+    <div className={`p-6 rounded-3xl border border-white/40 bg-white/60 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-indigo-500/5 ${loading ? 'opacity-60' : ''} shadow-lg shadow-black/5`}>
       <div className="flex items-center justify-between mb-4">
-        <div className={`p-3 rounded-2xl ${color}`}>
+        <div className={`p-3 rounded-2xl ${color} shadow-sm`}>
           {icon}
         </div>
       </div>
       <div>
-        <div className="text-slate-500 text-sm font-medium">{title}</div>
-        <div className="text-2xl font-black text-slate-900 mt-1">{value}</div>
+        <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{title}</div>
+        <div className="text-2xl font-black text-slate-900 mt-2 tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-slate-900 to-slate-700">{value}</div>
         {subValue && (
           <div className="text-xs text-slate-400 mt-1 font-semibold underline underline-offset-4 decoration-indigo-200">
             {subValue}
@@ -301,10 +301,10 @@ function KPICard({ title, value, subValue, icon, color, loading }: KPICardProps)
 
 function AccordionItem({ title, icon, children, isOpen, onToggle }: AccordionItemProps) {
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+    <div className="bg-white/70 backdrop-blur-md rounded-2xl border border-white/40 overflow-hidden shadow-xl shadow-slate-200/20">
       <button 
         onClick={onToggle}
-        className="w-full p-5 flex items-center justify-between hover:bg-slate-50 transition-colors"
+        className="w-full p-5 flex items-center justify-between hover:bg-white/40 transition-colors"
       >
         <div className="flex items-center gap-3">
           {icon}

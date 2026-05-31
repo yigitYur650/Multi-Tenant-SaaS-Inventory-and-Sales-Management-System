@@ -1,13 +1,14 @@
-name: Senior CI Suite
+name: Continuous Integration
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, master, develop ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, master, develop ]
 
 jobs:
-  test:
+  frontend:
+    name: Frontend CI (Typescript & Vitest)
     runs-on: ubuntu-latest
 
     steps:
@@ -23,5 +24,171 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: TypeScript Compile Check
+        run: npx tsc --noEmit
+
       - name: Run Unit Tests
-        run: npm test
+        run: npm run test
+
+  backend:
+    name: Backend CI (Go Tests)
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: textile_erp_test
+          POSTGRES_PASSWORD: password
+          POSTGRES_USER: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go 1.22
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          cache-dependency-path: backend/go.sum
+
+      - name: Install Dependencies
+        run: |
+          cd backend
+          go mod download
+
+      - name: Build Backend
+        run: |
+          cd backend
+          go build -v -o bin/server main.go
+
+      - name: Initialize Database Schema
+        env:
+          PGPASSWORD: password
+        run: |
+          # Wait for postgres to be ready and apply migrations in alphabetical order
+          for f in $(find supabase/migrations -name "*.sql" | sort); do
+            echo "Applying migration: $f"
+            psql -h 127.0.0.1 -U postgres -d textile_erp_test -f "$f"
+          done
+
+      - name: Run Go Tests
+        env:
+          DATABASE_URL: postgres://postgres:password@127.0.0.1:5432/textile_erp_test?sslmode=disable
+          REDIS_URL: 127.0.0.1:6379
+        run: |
+          cd backend
+          go test -v ./...
+
+  playwright:
+    name: E2E Playwright Tests
+    needs: [frontend, backend]
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: textile_erp_test
+          POSTGRES_PASSWORD: password
+          POSTGRES_USER: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Set up Go 1.22
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          cache-dependency-path: backend/go.sum
+
+      - name: Install Frontend Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Install Backend Dependencies
+        run: |
+          cd backend
+          go mod download
+
+      - name: Build Backend
+        run: |
+          cd backend
+          go build -v -o bin/server main.go
+
+      - name: Initialize Database Schema
+        env:
+          PGPASSWORD: password
+        run: |
+          for f in $(find supabase/migrations -name "*.sql" | sort); do
+            echo "Applying migration: $f"
+            psql -h 127.0.0.1 -U postgres -d textile_erp_test -f "$f"
+          done
+
+      - name: Start Backend Server
+        env:
+          DATABASE_URL: postgres://postgres:password@127.0.0.1:5432/textile_erp_test?sslmode=disable
+          REDIS_URL: 127.0.0.1:6379
+          METRICS_TOKEN: ci_test_token
+        run: |
+          cd backend
+          ./bin/server > server_log.txt 2>&1 &
+          echo "Server started in background"
+
+      - name: Create .env file for Playwright E2E
+        run: |
+          echo "VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}" >> .env
+          echo "VITE_SUPABASE_ANON_KEY=${{ secrets.VITE_SUPABASE_ANON_KEY }}" >> .env
+          echo "VITE_GO_API_URL=http://localhost:3001" >> .env
+          echo "VITE_APP_MODE=production" >> .env
+          echo "E2E_USER_EMAIL=${{ secrets.E2E_USER_EMAIL }}" >> .env
+          echo "E2E_USER_PASSWORD=${{ secrets.E2E_USER_PASSWORD }}" >> .env
+
+      - name: Run Playwright tests
+        run: |
+          if [ -z "${{ secrets.VITE_SUPABASE_URL }}" ]; then
+            echo "⚠️ Playwright secrets not found. Skipping Playwright E2E test to avoid breaking the build."
+          else
+            npx playwright test e2e/offline_sync.spec.ts
+          fi

@@ -83,48 +83,56 @@ export function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="glass p-6 rounded-2xl flex items-start gap-4 transition-transform hover:-translate-y-1 shadow-lg shadow-black/5">
-          <div className="p-3 bg-blue-100 text-blue-600 rounded-xl">
+        <div className="glass bg-white/60 hover:bg-white/80 backdrop-blur-md border border-white/40 p-6 rounded-2xl flex items-start gap-4 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-blue-500/5 hover:border-blue-200/50 shadow-lg shadow-black/5">
+          <div className="p-3 bg-blue-100 text-blue-600 rounded-xl shadow-sm shadow-blue-500/10">
             <TrendingUp size={24} />
           </div>
           <div>
-            <p className="text-sm font-medium text-slate-500">{t('dashboard.dailyRevenue')}</p>
-            <h3 className="text-2xl font-bold text-slate-800">{formatCurrency(stats?.todayRevenue, profile) || '0'}</h3>
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('dashboard.dailyRevenue')}</p>
+            <h3 className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 mt-1">
+              {formatCurrency(stats?.todayRevenue, profile) || '0'}
+            </h3>
           </div>
         </div>
 
-        <div className="glass p-6 rounded-2xl flex items-start gap-4 transition-transform hover:-translate-y-1 shadow-lg shadow-black/5">
-          <div className="p-3 bg-emerald-100 text-emerald-600 rounded-xl">
+        <div className="glass bg-white/60 hover:bg-white/80 backdrop-blur-md border border-white/40 p-6 rounded-2xl flex items-start gap-4 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-emerald-500/5 hover:border-emerald-200/50 shadow-lg shadow-black/5">
+          <div className="p-3 bg-emerald-100 text-emerald-600 rounded-xl shadow-sm shadow-emerald-500/10">
             <LayoutDashboard size={24} />
           </div>
           <div>
-            <p className="text-sm font-medium text-slate-500">{t('dashboard.registeredProducts')}</p>
-            <h3 className="text-2xl font-bold text-slate-800">{productCount}</h3>
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('dashboard.registeredProducts')}</p>
+            <h3 className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-600 mt-1">
+              {productCount}
+            </h3>
           </div>
         </div>
 
-        <div className="glass p-6 rounded-2xl flex items-start gap-4 transition-transform hover:-translate-y-1 shadow-lg shadow-black/5">
-          <div className="p-3 bg-indigo-100 text-indigo-600 rounded-xl">
+        <div className="glass bg-white/60 hover:bg-white/80 backdrop-blur-md border border-white/40 p-6 rounded-2xl flex items-start gap-4 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-indigo-500/5 hover:border-indigo-200/50 shadow-lg shadow-black/5">
+          <div className="p-3 bg-indigo-100 text-indigo-600 rounded-xl shadow-sm shadow-indigo-500/10">
             <Package size={24} />
           </div>
           <div>
-            <p className="text-sm font-medium text-slate-500">{t('dashboard.saleCount')}</p>
-            <h3 className="text-2xl font-bold text-slate-800">{stats?.totalSalesToday || '0'}</h3>
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('dashboard.saleCount')}</p>
+            <h3 className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 mt-1">
+              {stats?.totalSalesToday || '0'}
+            </h3>
           </div>
         </div>
 
-        <div className="glass p-6 rounded-2xl flex items-start gap-4 transition-transform hover:-translate-y-1 shadow-lg shadow-black/5 border border-rose-200 bg-gradient-to-br from-white to-rose-50">
-          <div className="p-3 bg-rose-100 text-rose-600 rounded-xl">
+        <div className="glass bg-white/60 hover:bg-white/80 backdrop-blur-md border border-white/40 p-6 rounded-2xl flex items-start gap-4 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-rose-500/5 hover:border-rose-200/50 shadow-lg shadow-black/5 bg-gradient-to-br from-white/60 to-rose-50/40">
+          <div className="p-3 bg-rose-100 text-rose-600 rounded-xl shadow-sm shadow-rose-500/10">
             <AlertTriangle size={24} />
           </div>
           <div>
-            <p className="text-sm font-medium text-slate-500">{t('dashboard.criticalStock')}</p>
-            <h3 className="text-2xl font-bold text-slate-800">{stats?.lowStockItems?.length || '0'} {t('dashboard.unitProduct')}</h3>
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('dashboard.criticalStock')}</p>
+            <h3 className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-rose-600 to-orange-600 mt-1">
+              {stats?.lowStockItems?.length || '0'} {t('dashboard.unitProduct')}
+            </h3>
           </div>
         </div>
       </div>
 
-      <div className="glass rounded-2xl p-6 shadow-xl shadow-slate-200/40 border border-white/50">
+      <div className="glass bg-white/70 backdrop-blur-md border border-white/40 rounded-3xl p-6 shadow-xl shadow-slate-200/30">
         <h2 className="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
           <TrendingUp size={20} className="text-blue-500"/>
           {t('dashboard.performanceTitle')}

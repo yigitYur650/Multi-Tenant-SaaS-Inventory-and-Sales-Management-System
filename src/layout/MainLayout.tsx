@@ -225,6 +225,10 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
       </aside>
 
       <main className="flex-1 flex flex-col bg-slate-50/95 text-slate-800 h-screen overflow-y-auto relative z-10 custom-scrollbar shadow-[-10px_0_30px_rgb(0,0,0,0.2)]">
+        {/* Ambient Blurred Background Accents for Depth */}
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-400/10 rounded-full blur-[120px] pointer-events-none -z-10 animate-pulse duration-[8000ms]"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-indigo-400/10 rounded-full blur-[140px] pointer-events-none -z-10 animate-pulse duration-[10000ms]"></div>
+
         <header className="absolute top-6 right-8 z-50 pointer-events-none flex items-center gap-4">
           <div className="pointer-events-auto">
             <GlobalSyncIndicator />
@@ -233,11 +237,11 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             <LanguageSwitcher />
           </div>
           {profile && (
-            <div className="bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-lg px-6 py-3 rounded-2xl flex items-center gap-3 transform transition-all duration-500 hover:scale-105 pointer-events-auto">
+            <div className="bg-white/60 backdrop-blur-md border border-white/40 shadow-xl shadow-slate-200/30 px-6 py-3 rounded-2xl flex items-center gap-3 transform transition-all duration-500 hover:scale-105 pointer-events-auto">
               <span className="text-xl">👋</span>
               <div>
-                <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">{t('common.welcome')}</p>
-                <p className="text-sm font-bold text-slate-800">{profile.full_name}</p>
+                <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">{t('common.welcome')}</p>
+                <p className="text-sm font-extrabold text-slate-800 mt-1">{profile.full_name}</p>
               </div>
             </div>
           )}
