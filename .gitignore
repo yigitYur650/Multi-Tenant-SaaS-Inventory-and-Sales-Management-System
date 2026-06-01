@@ -39,3 +39,14 @@ tmp_test.ts
 *.njsproj
 *.sln
 *.sw?
+
+# Go binaries and build artifacts
+backend/bin/
+backend/multi-tenant-saas-inventory
+backend/multi-tenant-saas-inventory.exe
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+

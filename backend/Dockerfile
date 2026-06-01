@@ -15,7 +15,7 @@ COPY . .
 
 # Build the Go application
 # CGO_ENABLED=0 compiles a statically linked binary (ideal for scratch/alpine)
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -o main .
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -o main ./cmd/server
 
 # Stage 2: Final runtime stage
 FROM alpine:3.19

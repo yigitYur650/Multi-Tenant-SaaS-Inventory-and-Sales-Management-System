@@ -85,7 +85,7 @@ Stage A: Launching Go API Layer
 Bash
 cd backend
 go mod tidy
-go run main.go
+go run cmd/server/main.go
 # Gateway layer initializes and begins pooling on port :3001
 Stage B: Launching Front-End Client Workspace
 Bash

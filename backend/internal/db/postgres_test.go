@@ -1,4 +1,4 @@
-package db
+package db_test
 
 import (
 	"context"
@@ -8,6 +8,8 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
+	"multi-tenant-saas-inventory/internal/db"
+	"multi-tenant-saas-inventory/internal/repository"
 )
 
 func TestBulkInsertSalesAndMovementsFallback(t *testing.T) {
@@ -16,7 +18,7 @@ func TestBulkInsertSalesAndMovementsFallback(t *testing.T) {
 		t.Skip("DATABASE_URL is not set. Skipping integration test.")
 	}
 
-	pool, err := NewPostgresPool()
+	pool, err := db.NewPostgresPool()
 	if err != nil {
 		t.Fatalf("Failed to initialize connection pool: %v", err)
 	}
@@ -62,7 +64,8 @@ func TestBulkInsertSalesAndMovementsFallback(t *testing.T) {
 	}
 
 	// Run the bulk insert
-	err = BulkInsertSalesAndMovements(ctx, pool, sales, []interface{}{}, []interface{}{})
+	repo := repository.NewPostgresSyncRepository(pool)
+	err = repo.BulkInsertSalesAndMovements(ctx, sales, []interface{}{}, []interface{}{})
 	if err != nil {
 		t.Fatalf("BulkInsertSalesAndMovements returned an error; expected nil because fallback handles failures: %v", err)
 	}
@@ -98,7 +101,7 @@ func TestTenantRLSLeakage(t *testing.T) {
 		t.Skip("DATABASE_URL is not set. Skipping RLS isolation tests.")
 	}
 
-	pool, err := NewPostgresPool()
+	pool, err := db.NewPostgresPool()
 	if err != nil {
 		t.Fatalf("Failed to initialize connection pool: %v", err)
 	}
