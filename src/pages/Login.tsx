@@ -61,10 +61,13 @@ export const Login: React.FC = () => {
 
   if (showForgot) {
     return (
-      <div className="min-h-screen w-full flex items-center justify-center bg-slate-900 relative overflow-hidden text-slate-100 font-sans">
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-blue-600/20 blur-[120px] rounded-full pointer-events-none"></div>
-        <div className="w-full max-w-md p-8 relative z-10">
-          <div className="bg-slate-900/40 backdrop-blur-3xl border border-white/10 rounded-[32px] p-8 shadow-2xl">
+      <div className="min-h-screen w-full flex flex-col items-center pt-24 sm:pt-0 sm:justify-center bg-slate-900 relative overflow-hidden text-slate-100 font-sans px-4">
+        {/* Language Switcher */}
+        <div className="absolute top-4 right-4 z-10"><LanguageSwitcher /></div>
+        {/* Arka plan efektleri */}
+        <div className="hidden sm:block absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-blue-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+        <div className="w-full max-w-md px-4 sm:px-0 relative z-10">
+          <div className="bg-slate-900/40 backdrop-blur-3xl border border-white/10 rounded-[32px] p-4 sm:p-8 shadow-2xl">
             <div className="mb-8 text-center">
               <h2 className="text-2xl font-black text-white mb-2 tracking-tight">{t('auth.forgot.title')}</h2>
               <p className="text-slate-400 text-sm font-medium">{t('auth.forgot.subtitle')}</p>
@@ -119,17 +122,16 @@ export const Login: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-slate-900 relative overflow-hidden text-slate-100 font-sans">
-
-        {/* Language Switcher */}
-        <div className="absolute top-4 right-4 z-10"><LanguageSwitcher /></div>
-        {/* Arka plan efektleri */}
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-blue-600/30 blur-[120px] rounded-full pointer-events-none mix-blend-screen"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-indigo-600/20 blur-[100px] rounded-full pointer-events-none mix-blend-screen"></div>
+    <div className="min-h-screen w-full flex flex-col items-center pt-24 sm:pt-0 sm:justify-center bg-slate-900 relative overflow-hidden text-slate-100 font-sans px-4">
+      {/* Language Switcher */}
+      <div className="absolute top-4 right-4 z-10"><LanguageSwitcher /></div>
+      {/* Arka plan efektleri */}
+      <div className="hidden sm:block absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-blue-600/30 blur-[120px] rounded-full pointer-events-none mix-blend-screen"></div>
+      <div className="hidden sm:block absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-indigo-600/20 blur-[100px] rounded-full pointer-events-none mix-blend-screen"></div>
 
       {/* Glass Panel */}
-      <div className="w-full max-w-md p-8 relative z-10">
-        <div className="bg-slate-900/40 backdrop-blur-3xl border border-white/10 rounded-[32px] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] p-8">
+      <div className="w-full max-w-md px-4 sm:px-0 relative z-10">
+        <div className="bg-slate-900/40 backdrop-blur-3xl border border-white/10 rounded-[32px] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] p-4 sm:p-8">
           
           <div className="mb-10 text-center">
             <div className="w-16 h-16 mx-auto bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/40 border border-white/20">

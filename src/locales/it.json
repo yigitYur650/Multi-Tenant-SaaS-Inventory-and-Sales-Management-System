@@ -269,7 +269,8 @@
       "button": "ACCEDI",
       "noAccount": "Non hai un account?",
       "registerNow": "Registrati",
-      "error": "Errore durante l'accesso"
+      "error": "Errore durante l'accesso",
+      "backToLogin": "Torna al login"
     },
     "forgot": {
       "title": "Password dimenticata?",
@@ -277,7 +278,8 @@
       "success": "✅ Un link è stato inviato alla tua email.",
       "backToLogin": "TORNA ALL'ACCESSO",
       "sendButton": "INVIA LINK",
-      "sending": "Invio in corso..."
+      "sending": "Invio in corso...",
+      "emailPlaceholder": "La tua email"
     },
     "register": {
       "title": "Crea il tuo negozio ERP",

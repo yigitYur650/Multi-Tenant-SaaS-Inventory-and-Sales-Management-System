@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Package, ShoppingCart, BarChart2, LogOut, Shield, ShieldAlert, Wifi, WifiOff, User, Key } from 'lucide-react';
+import { LayoutDashboard, Package, ShoppingCart, BarChart2, LogOut, Shield, ShieldAlert, Wifi, WifiOff, User, Key, Menu, X } from 'lucide-react';
 import { useRole } from '../components/RoleContext';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../lib/supabaseClient';
@@ -16,6 +16,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   const { profile, signOut, isRecovering, setRecovering } = useAuth();
   const [isConnected, setIsConnected] = useState<boolean | null>(null);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const checkConnection = async () => {
@@ -75,9 +76,17 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   ];
 
   return (
-    <div className="flex h-screen w-full bg-slate-900 overflow-hidden text-slate-100 font-sans">
+    <div className="flex h-screen w-full bg-slate-900 overflow-hidden text-slate-100 font-sans relative">
+      {/* Overlay for mobile menu */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 md:hidden transition-all duration-300"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
       {/* Sidebar - Apple/Premium Feel */}
-      <aside className="w-64 flex flex-col bg-slate-900/40 backdrop-blur-3xl border-r border-white/10 shadow-[8px_0_30px_rgb(0,0,0,0.15)] z-20 relative">
+      <aside className={`fixed inset-y-0 left-0 z-40 w-64 flex flex-col bg-slate-950 border-r border-white/10 shadow-[8px_0_30px_rgb(0,0,0,0.15)] transition-transform duration-300 md:relative md:translate-x-0 md:bg-slate-900/40 md:backdrop-blur-3xl ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="absolute top-0 left-0 w-full h-32 bg-blue-500/10 blur-[50px] -z-10 rounded-full mix-blend-screen pointer-events-none"></div>
         
         <div className="p-8 pb-4 flex items-center justify-between">
@@ -88,10 +97,16 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             <span className="font-bold text-xl tracking-tight text-white/95">SaaS ERP</span>
           </div>
           
-          <div className="flex items-center" title={isConnected ? t('layout.connection.success') : isConnected === false ? t('layout.connection.error') : t('layout.connection.connecting')}>
-            {isConnected === true && <Wifi size={18} className="text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.8)]" />}
-            {isConnected === false && <WifiOff size={18} className="text-rose-400 drop-shadow-[0_0_8px_rgba(251,113,133,0.8)]" />}
-            {isConnected === null && <div className="w-4 h-4 rounded-full border-2 border-slate-400 border-t-white animate-spin"></div>}
+          <div className="flex items-center gap-2">
+            <div className="flex items-center" title={isConnected ? t('layout.connection.success') : isConnected === false ? t('layout.connection.error') : t('layout.connection.connecting')}>
+              {isConnected === true && <Wifi size={18} className="text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.8)]" />}
+              {isConnected === false && <WifiOff size={18} className="text-rose-400 drop-shadow-[0_0_8px_rgba(251,113,133,0.8)]" />}
+              {isConnected === null && <div className="w-4 h-4 rounded-full border-2 border-slate-400 border-t-white animate-spin"></div>}
+            </div>
+            
+            <button onClick={() => setIsMobileMenuOpen(false)} className="md:hidden p-1.5 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white transition-colors">
+              <X size={18} />
+            </button>
           </div>
         </div>
 
@@ -187,6 +202,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                 key={idx}
                 to={item.path}
                 end={item.end}
+                onClick={() => setIsMobileMenuOpen(false)}
                 className={({ isActive }) => {
                   const colors = getColors(isActive);
                   return `w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all duration-300 group relative overflow-hidden border ${colors.bg} ${colors.text} ${colors.border}`;
@@ -209,14 +225,20 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
 
         <div className="p-5 border-t border-white/5 space-y-1">
            <button 
-             onClick={() => setIsPasswordModalOpen(true)}
+             onClick={() => {
+               setIsMobileMenuOpen(false);
+               setIsPasswordModalOpen(true);
+             }}
              className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors border border-transparent text-sm"
            >
               <Key size={18} />
               <span className="font-medium">{t('menu.change_password')}</span>
            </button>
            <button 
-             onClick={signOut}
+             onClick={() => {
+               setIsMobileMenuOpen(false);
+               signOut();
+             }}
              className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors border border-transparent text-sm"
            >
               <LogOut size={18} />
@@ -230,22 +252,28 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-400/10 rounded-full blur-[120px] pointer-events-none -z-10 animate-pulse duration-[8000ms]"></div>
         <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-indigo-400/10 rounded-full blur-[140px] pointer-events-none -z-10 animate-pulse duration-[10000ms]"></div>
 
-        <header className="absolute top-6 right-8 z-50 pointer-events-none flex items-center gap-4">
-          <div className="pointer-events-auto">
+        <header className="absolute top-4 left-6 right-6 z-30 flex items-center justify-between md:right-8 md:left-auto md:top-6 md:justify-end md:gap-4 pointer-events-none">
+          {/* Hamburger Menu Trigger for Mobile */}
+          <button 
+            onClick={() => setIsMobileMenuOpen(true)} 
+            className="md:hidden p-2 hover:bg-slate-200/50 rounded-xl transition-colors text-slate-700 pointer-events-auto flex items-center justify-center shrink-0 bg-white/80 backdrop-blur-md shadow-md border border-slate-200/40"
+          >
+            <Menu size={20} />
+          </button>
+
+          <div className="flex items-center gap-2 md:gap-4 pointer-events-auto ml-auto">
             <GlobalSyncIndicator />
-          </div>
-          <div className="pointer-events-auto">
             <LanguageSwitcher />
-          </div>
-          {profile && (
-            <div className="bg-white/60 backdrop-blur-md border border-white/40 shadow-xl shadow-slate-200/30 px-6 py-3 rounded-2xl flex items-center gap-3 transform transition-all duration-500 hover:scale-105 pointer-events-auto">
-              <span className="text-xl">👋</span>
-              <div>
-                <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">{t('common.welcome')}</p>
-                <p className="text-sm font-extrabold text-slate-800 mt-1">{profile.full_name}</p>
+            {profile && (
+              <div className="hidden sm:flex bg-white/60 backdrop-blur-md border border-white/40 shadow-xl shadow-slate-200/30 px-6 py-3 rounded-2xl flex items-center gap-3 transform transition-all duration-500 hover:scale-105">
+                <span className="text-xl">👋</span>
+                <div>
+                  <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">{t('common.welcome')}</p>
+                  <p className="text-sm font-extrabold text-slate-800 mt-1">{profile.full_name}</p>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </header>
 
         <div className="p-8 pt-24 pb-20 min-h-full">

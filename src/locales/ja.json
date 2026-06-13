@@ -269,7 +269,8 @@
       "button": "ログイン",
       "noAccount": "アカウントをお持ちでないですか？",
       "registerNow": "新規登録",
-      "error": "ログイン中にエラーが発生しました"
+      "error": "ログイン中にエラーが発生しました",
+      "backToLogin": "ログイン画面に戻る"
     },
     "forgot": {
       "title": "パスワードのリセット",
@@ -277,7 +278,8 @@
       "success": "✅ パスワードリセット用のリンクをメールで送信しました。",
       "backToLogin": "ログイン画面に戻る",
       "sendButton": "リセットリンクを送信",
-      "sending": "送信中..."
+      "sending": "送信中...",
+      "emailPlaceholder": "メールアドレス"
     },
     "register": {
       "title": "店舗アカウント作成",

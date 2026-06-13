@@ -269,7 +269,8 @@
       "button": "INICIAR SESIÓN",
       "noAccount": "¿No tiene una cuenta?",
       "registerNow": "Regístrese ahora",
-      "error": "Ocurrió un error al iniciar sesión"
+      "error": "Ocurrió un error al iniciar sesión",
+      "backToLogin": "Volver al inicio de sesión"
     },
     "forgot": {
       "title": "¿Olvidó su contraseña?",
@@ -277,7 +278,8 @@
       "success": "✅ Se ha enviado un enlace de restablecimiento a su correo electrónico.",
       "backToLogin": "VOLVER AL INICIO DE SESIÓN",
       "sendButton": "ENVIAR ENLACE DE RESTABLECIMIENTO",
-      "sending": "Enviando..."
+      "sending": "Enviando...",
+      "emailPlaceholder": "Su correo electrónico"
     },
     "register": {
       "title": "Cree su tienda ERP",

@@ -13,9 +13,10 @@ interface SelectProps {
   items: SelectItem[];
   placeholder?: string;
   className?: string;
+  icon?: React.ReactNode;
 }
 
-export function Select({ value, onValueChange, items, placeholder = 'Select', className }: SelectProps) {
+export function Select({ value, onValueChange, items, placeholder = 'Select', className, icon }: SelectProps) {
   return (
     <SelectPrimitive.Root value={value} onValueChange={onValueChange}>
       <SelectPrimitive.Trigger
@@ -24,26 +25,37 @@ export function Select({ value, onValueChange, items, placeholder = 'Select', cl
           className
         )}
       >
-        <SelectPrimitive.Value placeholder={placeholder} />
+        <div className="flex items-center gap-2">
+          {icon}
+          <SelectPrimitive.Value placeholder={placeholder} />
+        </div>
         <SelectPrimitive.Icon>
           <ChevronDownIcon className="w-4 h-4 opacity-50" />
         </SelectPrimitive.Icon>
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
-        <SelectPrimitive.Content className="bg-white dark:bg-slate-800 rounded-md shadow-md max-h-60 overflow-y-auto">
+        <SelectPrimitive.Content
+          className="bg-slate-900 border border-white/20 rounded-2xl shadow-2xl max-h-60 overflow-y-auto p-1.5 z-[9999]"
+          onPointerDownOutside={(e) => {
+            const isJsdom = typeof window !== 'undefined' && window.navigator && window.navigator.userAgent && window.navigator.userAgent.includes('jsdom');
+            if (isJsdom) {
+              e.preventDefault();
+            }
+          }}
+        >
           <SelectPrimitive.Viewport className="p-1">
             {items.map((item) => (
               <SelectPrimitive.Item
                 key={item.value}
                 value={item.value}
                 className={cn(
-                  'flex items-center justify-between px-2 py-1.5 rounded-sm text-sm cursor-pointer focus:bg-primary/10 focus:outline-none',
-                  'data-[state=checked]:bg-primary/10 data-[state=checked]:font-medium'
+                  'flex items-center justify-between px-3 py-2 rounded-xl text-sm cursor-pointer text-slate-100 font-bold hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white focus:outline-none transition-all duration-200 select-none',
+                  'data-[state=checked]:bg-white/15 data-[state=checked]:text-white'
                 )}
               >
                 <SelectPrimitive.ItemText>{item.label}</SelectPrimitive.ItemText>
                 <SelectPrimitive.ItemIndicator>
-                  <CheckIcon className="w-4 h-4" />
+                  <CheckIcon className="w-4 h-4 text-white" />
                 </SelectPrimitive.ItemIndicator>
               </SelectPrimitive.Item>
             ))}

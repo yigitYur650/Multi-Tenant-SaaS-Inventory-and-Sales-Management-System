@@ -269,7 +269,8 @@
       "button": "ANMELDEN",
       "noAccount": "Noch kein Konto?",
       "registerNow": "Jetzt registrieren",
-      "error": "Fehler beim Anmelden"
+      "error": "Fehler beim Anmelden",
+      "backToLogin": "Zurück zur Anmeldung"
     },
     "forgot": {
       "title": "Passwort vergessen?",
@@ -277,7 +278,8 @@
       "success": "✅ Ein Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail-Adresse gesendet.",
       "backToLogin": "ZURÜCK ZUR ANMELDUNG",
       "sendButton": "RESET-LINK SENDEN",
-      "sending": "Wird gesendet..."
+      "sending": "Wird gesendet...",
+      "emailPlaceholder": "Ihre E-Mail-Adresse"
     },
     "register": {
       "title": "Erstellen Sie Ihren ERP-Shop",

@@ -269,7 +269,8 @@
       "button": "SE CONNECTER",
       "noAccount": "Pas de compte ?",
       "registerNow": "S'inscrire",
-      "error": "Erreur lors de la connexion"
+      "error": "Erreur lors de la connexion",
+      "backToLogin": "Retour à la page de connexion"
     },
     "forgot": {
       "title": "Mot de passe oublié ?",
@@ -277,7 +278,8 @@
       "success": "✅ Un lien a été envoyé à votre adresse email.",
       "backToLogin": "RETOUR À LA CONNEXION",
       "sendButton": "ENVOYER LE LIEN",
-      "sending": "Envoi..."
+      "sending": "Envoi...",
+      "emailPlaceholder": "Votre email"
     },
     "register": {
       "title": "Créez votre boutique ERP",

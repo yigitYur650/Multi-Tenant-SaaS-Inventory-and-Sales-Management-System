@@ -269,7 +269,8 @@
       "button": "GİRİŞ YAP",
       "noAccount": "Hesabınız yok mu?",
       "registerNow": "Hemen Kayıt Ol",
-      "error": "Giriş sırasında bir hata oluştu"
+      "error": "Giriş sırasında bir hata oluştu",
+      "backToLogin": "Giriş Ekranına Dön"
     },
     "forgot": {
       "title": "Şifrenizi mi Unuttunuz?",
@@ -277,7 +278,8 @@
       "success": "✅ Şifre sıfırlama bağlantısı e-posta adresinize gönderildi. Lütfen gelen kutunuzu kontrol edin.",
       "backToLogin": "GİRİŞ EKRANINA DÖN",
       "sendButton": "SIFIRLAMA BAĞLANTISI GÖNDER",
-      "sending": "Gönderiliyor..."
+      "sending": "Gönderiliyor...",
+      "emailPlaceholder": "E-posta adresiniz"
     },
     "register": {
       "title": "Erp Dükkanınızı Kurun",

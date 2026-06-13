@@ -269,7 +269,8 @@
       "button": "LOG IN",
       "noAccount": "Don't have an account?",
       "registerNow": "Register Now",
-      "error": "An error occurred during login"
+      "error": "An error occurred during login",
+      "backToLogin": "Back to Login"
     },
     "forgot": {
       "title": "Forgot Your Password?",
@@ -277,7 +278,8 @@
       "success": "✅ Password reset link sent to your email. Please check your inbox.",
       "backToLogin": "BACK TO LOGIN SCREEN",
       "sendButton": "SEND RESET LINK",
-      "sending": "Sending..."
+      "sending": "Sending...",
+      "emailPlaceholder": "Your email address"
     },
     "register": {
       "title": "Set Up Your ERP Shop",
