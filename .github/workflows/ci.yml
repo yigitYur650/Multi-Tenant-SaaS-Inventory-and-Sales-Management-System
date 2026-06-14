@@ -76,7 +76,7 @@ jobs:
       - name: Build Backend
         run: |
           cd backend
-          go build -v -o bin/server main.go
+          go build -v -o bin/server cmd/server/main.go
 
       - name: Initialize Database Schema
         env:
@@ -155,7 +155,7 @@ jobs:
       - name: Build Backend
         run: |
           cd backend
-          go build -v -o bin/server main.go
+          go build -v -o bin/server cmd/server/main.go
 
       - name: Initialize Database Schema
         env:
@@ -253,7 +253,7 @@ jobs:
         run: |
           cd backend
           go mod download
-          go build -v -o bin/server main.go
+          go build -v -o bin/server cmd/server/main.go
           ./bin/server > server_log.txt 2>&1 &
           sleep 5
 
