@@ -10,8 +10,8 @@ import { uuidv4 } from 'https://jslib.k6.io/k6-utils/1.4.0/index.js';
 
 export const options = {
   stages: [
-    { duration: '30s', target: 500 },   // Hızlı tırmanış
-    { duration: '1m', target: 1000 },   // 1000 VU (GH Actions Limitlerinde Maksimum Verim)
+    { duration: '30s', target: 250 },   // Hızlı tırmanış
+    { duration: '1m', target: 500 },    // 500 VU (GH Actions Runner Optimizasyonu)
     { duration: '30s', target: 0 },     // İyileşme
   ],
   thresholds: {
