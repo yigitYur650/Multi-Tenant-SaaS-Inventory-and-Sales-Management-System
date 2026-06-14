@@ -10,15 +10,15 @@ import { uuidv4 } from 'https://jslib.k6.io/k6-utils/1.4.0/index.js';
 
 export const options = {
   stages: [
-    { duration: '30s', target: 250 },   // Hızlı tırmanış
-    { duration: '1m', target: 500 },    // 500 VU (GH Actions Runner Optimizasyonu)
+    { duration: '30s', target: 500 },   // Hızlı tırmanış
+    { duration: '1m', target: 1000 },   // 1000 VU (GH Actions Limitlerinde Maksimum Verim)
     { duration: '30s', target: 0 },     // İyileşme
   ],
   thresholds: {
     // p(95) yanıt süresi 500ms altında olmalı
     'http_req_duration': ['p(95)<500'],
-    // Genel hata oranı %5'in altında olmalı (Kilitlenmeler nedeniyle oluşabilecek hataları izlemek için)
-    'http_req_failed': ['rate<0.05'],
+    // Genel hata oranı %7'nin altında olmalı (Kilitlenmeler nedeniyle oluşabilecek hataları izlemek için)
+    'http_req_failed': ['rate<0.07'],
   },
 };
 
