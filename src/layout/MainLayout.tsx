@@ -19,6 +19,14 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (profile?.shops?.name) {
+      document.title = profile.shops.name;
+    } else {
+      document.title = 'SaaS Textile ERP';
+    }
+  }, [profile?.shops?.name]);
+
+  useEffect(() => {
     const checkConnection = async () => {
       if (import.meta.env.VITE_APP_MODE === 'sandbox') {
         setIsConnected(false); 
@@ -90,11 +98,13 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         <div className="absolute top-0 left-0 w-full h-32 bg-blue-500/10 blur-[50px] -z-10 rounded-full mix-blend-screen pointer-events-none"></div>
         
         <div className="p-8 pb-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-white shadow-lg shadow-blue-500/40 border border-white/10">
-              S
+          <div className="flex items-center gap-3 pr-2">
+            <div className="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-white text-xl shadow-lg shadow-blue-500/40 border border-white/10">
+              s
             </div>
-            <span className="font-bold text-xl tracking-tight text-white/95">SaaS ERP</span>
+            <span className="font-bold text-base leading-tight tracking-tight text-white/95 break-words line-clamp-2">
+              {profile?.shops?.name || 'SaaS ERP'}
+            </span>
           </div>
           
           <div className="flex items-center gap-2">

@@ -88,12 +88,15 @@ export function ProductForm({ onClose, initialData }: ProductFormProps) {
     try {
       const selectedCat = categories.find(c => c.id === categoryId);
       
-      const productPayload = {
+      const productPayload: any = {
         name: selectedCat?.name || t('inventory.product.noCategory'),
         description: description.trim() || null,
-        shop_id: profile?.shop_id || '',
-        category_id: categoryId
+        category_id: categoryId,
+        version: initialData ? (initialData.version || 1) + 1 : 1
       };
+      if (profile?.shop_id) {
+        productPayload.shop_id = profile.shop_id;
+      }
       
       let productId = initialData?.id;
 
@@ -125,7 +128,7 @@ export function ProductForm({ onClose, initialData }: ProductFormProps) {
           size_id: v.size_id || null,
           sku: v.sku?.trim() || null,
           retail_price: retailPriceNum,
-          wholesale_price: retailPriceNum * 0.8,
+          wholesale_price: 0,
           low_stock_threshold: lowStockThresholdNum
         };
 

@@ -183,7 +183,8 @@ export function Sales() {
   const updateQuantity = (id: string, delta: number) => {
     setCart(prev => prev.map(item => {
       if (item.variant_id === id) {
-        const newQty = item.quantity + delta;
+        const currentQty = Number(item.quantity) || 1;
+        const newQty = currentQty + delta;
         if (newQty <= 0) return item;
         if (newQty > item.stock) return item;
         return { ...item, quantity: newQty };
@@ -192,11 +193,30 @@ export function Sales() {
     }));
   };
 
+  const setItemQuantity = (id: string, qty: string) => {
+    setCart(prev => prev.map(item => {
+      if (item.variant_id === id) {
+        if (qty === '') return { ...item, quantity: '' as any };
+        const num = parseInt(qty, 10);
+        if (isNaN(num)) return item;
+        if (num > item.stock) return { ...item, quantity: item.stock };
+        return { ...item, quantity: num };
+      }
+      return item;
+    }));
+  };
+
+  const handleQuantityBlur = (id: string, currentQty: any) => {
+    if (currentQty === '' || currentQty <= 0) {
+       setCart(prev => prev.map(item => item.variant_id === id ? { ...item, quantity: 1 } : item));
+    }
+  };
+
   const removeFromCart = (id: string) => {
     setCart(prev => prev.filter(item => item.variant_id !== id));
   };
 
-  const cartTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const cartTotal = cart.reduce((sum, item) => sum + (item.price * (Number(item.quantity) || 0)), 0);
 
   const handleCheckoutSuccess = async () => {
     setCart([]);
@@ -265,19 +285,19 @@ export function Sales() {
   };
 
   return (
-    <PageTransition className="min-h-screen -m-8 p-8 transition-colors duration-1000 bg-emerald-50/40">
-      <div className="flex gap-8 h-[calc(100vh-120px)] overflow-hidden">
+    <PageTransition className="min-h-screen -m-4 md:-m-8 p-4 md:p-8 transition-colors duration-1000 bg-emerald-50/40">
+      <div className="flex flex-col lg:flex-row gap-6 md:gap-8 lg:h-[calc(100vh-120px)] lg:overflow-hidden">
         
         {/* SOL: ÜRÜN VİTRİNİ (%70) */}
-        <div className="flex-[7] flex flex-col gap-6 overflow-hidden">
-          <div className="flex items-center justify-between gap-4 bg-white/60 backdrop-blur-md p-4 rounded-[28px] border border-emerald-100 shadow-sm print:hidden">
+        <div className="lg:flex-[7] flex flex-col gap-4 md:gap-6 lg:overflow-hidden">
+          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-white/60 backdrop-blur-md p-4 rounded-[24px] md:rounded-[28px] border border-emerald-100 shadow-sm print:hidden">
             <div className="relative flex-1">
               <input 
                 type="text" 
                 placeholder={t('sales.searchPlaceholder')} 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3.5 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-emerald-500 font-medium text-emerald-900 transition-all shadow-sm"
+                className="w-full pl-12 pr-4 py-3 md:py-3.5 bg-white border border-slate-200 rounded-[20px] md:rounded-2xl focus:ring-2 focus:ring-emerald-500 font-medium text-emerald-900 transition-all shadow-sm"
               />
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-emerald-400" size={20} />
             </div>
@@ -345,7 +365,7 @@ export function Sales() {
         </div>
 
         {/* SAĞ: KASA / SEPET (%30) */}
-        <div className="flex-[3] flex flex-col bg-white rounded-[32px] shadow-2xl border border-emerald-100 overflow-hidden relative print:hidden">
+        <div className="lg:flex-[3] h-[550px] lg:h-auto shrink-0 flex flex-col bg-white rounded-[24px] lg:rounded-[32px] shadow-2xl border border-emerald-100 overflow-hidden relative print:hidden">
           {isSuccess && (
             <motion.div 
               initial={{ y: -50, opacity: 0 }}
@@ -356,7 +376,7 @@ export function Sales() {
             </motion.div>
           )}
 
-          <div className="p-6 bg-emerald-600 text-white shadow-lg">
+          <div className="p-4 md:p-6 bg-emerald-600 text-white shadow-lg shrink-0">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-white/20 rounded-xl">
                 <CartIcon size={24} />
@@ -400,10 +420,17 @@ export function Sales() {
                         >
                           <Minus size={14} />
                         </button>
-                        <span className="w-8 text-center text-xs font-black text-slate-800">{item.quantity}</span>
+                        <input 
+                          type="text"
+                          inputMode="numeric"
+                          value={item.quantity}
+                          onChange={(e) => setItemQuantity(item.variant_id, e.target.value)}
+                          onBlur={() => handleQuantityBlur(item.variant_id, item.quantity)}
+                          className="w-14 md:w-20 py-1 text-center text-sm font-black text-slate-800 bg-transparent outline-none focus:bg-white focus:ring-2 focus:ring-emerald-500 rounded transition-all"
+                        />
                         <button 
                           onClick={() => updateQuantity(item.variant_id, 1)}
-                          disabled={item.quantity >= item.stock}
+                          disabled={Number(item.quantity) >= item.stock}
                           className="p-1 text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors disabled:opacity-30"
                         >
                           <Plus size={14} />
@@ -411,7 +438,7 @@ export function Sales() {
                       </div>
                       <div className="text-right">
                         <p className="text-[9px] font-bold text-slate-400">{t('sales.cart.rowTotal')}</p>
-                        <p className="text-sm font-black text-slate-900">{formatCurrency(item.price * item.quantity, profile)}</p>
+                        <p className="text-sm font-black text-slate-900">{formatCurrency(item.price * (Number(item.quantity) || 0), profile)}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -428,7 +455,7 @@ export function Sales() {
             )}
           </div>
 
-          <div className="p-6 bg-white border-t border-emerald-100 space-y-4 shadow-inner">
+          <div className="p-4 md:p-6 bg-white border-t border-emerald-100 space-y-4 shadow-inner shrink-0">
             {/* Daily Summary Preview */}
             {dailySummary && (
               <div className="grid grid-cols-3 gap-2 pb-4 border-b border-dashed border-emerald-100">
@@ -481,9 +508,9 @@ export function Sales() {
         onClose={() => { setIsHistoryOpen(false); setSelectedSale(null); }}
         title={t('sales.history.title')}
       >
-        <div className="space-y-6">
+        <div className="space-y-4 md:space-y-6">
            {/* Raporlama Kontrolleri */}
-           <div className="bg-slate-50 p-5 rounded-3xl border border-slate-100 flex flex-col gap-4 shadow-sm">
+           <div className="bg-slate-50 p-4 md:p-5 rounded-[24px] md:rounded-3xl border border-slate-100 flex flex-col gap-4 shadow-sm">
               <div className="flex justify-between items-center">
                  <select 
                    value={reportPeriod} 
@@ -714,14 +741,14 @@ function ReturnModal({ item, maxQty, onClose, onConfirm, quantity, setQuantity, 
       <motion.div 
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="bg-white rounded-[32px] w-full max-w-md shadow-2xl overflow-hidden"
+        className="bg-white rounded-[24px] md:rounded-[32px] w-full max-w-md shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto custom-scrollbar"
       >
-        <div className="p-6 bg-rose-600 text-white flex justify-between items-center">
+        <div className="p-4 md:p-6 bg-rose-600 text-white flex justify-between items-center sticky top-0 z-10">
            <h3 className="font-black uppercase tracking-tight">{t('sales.return.title')}</h3>
            <button onClick={onClose} className="p-2 hover:bg-rose-700 rounded-xl transition-all"><X size={20} /></button>
         </div>
         
-        <div className="p-8 space-y-6">
+        <div className="p-4 md:p-8 space-y-4 md:space-y-6">
            <div>
               <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{t('sales.return.product')}</p>
               <p className="font-bold text-slate-800">{item.product_variants?.products?.name}</p>
@@ -803,9 +830,9 @@ function CheckoutModal({ cart, total, onClose, onSuccess }: { cart: CartItem[], 
         customer_note: customerNote,
         items: cart.map(item => ({
           variant_id: item.variant_id,
-          quantity: item.quantity,
+          quantity: Number(item.quantity) || 1,
           unit_price: item.price,
-          total_price: item.price * item.quantity
+          total_price: item.price * (Number(item.quantity) || 1)
         }))
       };
 
@@ -823,19 +850,19 @@ function CheckoutModal({ cart, total, onClose, onSuccess }: { cart: CartItem[], 
       <motion.div 
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="bg-white rounded-[40px] w-full max-w-xl shadow-2xl flex flex-col overflow-hidden border border-emerald-100"
+        className="bg-white rounded-[24px] md:rounded-[40px] w-full max-w-xl shadow-2xl flex flex-col overflow-hidden border border-emerald-100 max-h-[90vh] overflow-y-auto custom-scrollbar"
       >
-        <div className="p-8 bg-emerald-600 text-white flex justify-between items-center relative overflow-hidden">
+        <div className="p-6 md:p-8 bg-emerald-600 text-white flex justify-between items-center relative overflow-hidden shrink-0 sticky top-0 z-20">
            <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
            <div>
-             <h3 className="text-2xl font-black tracking-tight leading-none">{t('sales.checkout.title')}</h3>
-             <p className="text-xs text-emerald-100 uppercase tracking-widest font-bold mt-2 font-mono">{t('sales.checkout.options')}</p>
+             <h3 className="text-xl md:text-2xl font-black tracking-tight leading-none">{t('sales.checkout.title')}</h3>
+             <p className="text-[10px] md:text-xs text-emerald-100 uppercase tracking-widest font-bold mt-2 font-mono">{t('sales.checkout.options')}</p>
            </div>
-           <button onClick={onClose} className="p-3 hover:bg-emerald-700/50 rounded-2xl transition-all relative z-10"><X size={24} /></button>
+           <button onClick={onClose} className="p-2 md:p-3 hover:bg-emerald-700/50 rounded-2xl transition-all relative z-10"><X size={20} className="md:w-6 md:h-6" /></button>
         </div>
 
-        <div className="p-8 space-y-8">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="p-4 md:p-8 space-y-6 md:space-y-8">
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
              <PaymentOption 
                active={paymentMethod === 'CASH'} icon={<Banknote />} label={t('sales.checkout.paymentMethods.cash')} amount={total} 
                onClick={() => setPaymentMethod('CASH')}
@@ -903,7 +930,7 @@ function PaymentOption({ active, icon, label, amount, onClick }: any) {
   return (
     <button 
       onClick={onClick}
-      className={`p-6 rounded-[32px] border-2 transition-all flex flex-col items-center gap-3 relative overflow-hidden ${
+      className={`p-4 md:p-6 rounded-[20px] md:rounded-[32px] border-2 transition-all flex flex-col items-center gap-2 md:gap-3 relative overflow-hidden ${
         active 
         ? 'border-emerald-500 bg-emerald-50 text-emerald-700 shadow-xl shadow-emerald-100 ring-4 ring-emerald-500/10' 
         : 'border-slate-100 bg-slate-50 text-slate-400 hover:border-emerald-200 shadow-sm'

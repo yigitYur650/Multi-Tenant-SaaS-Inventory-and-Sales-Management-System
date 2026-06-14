@@ -114,105 +114,105 @@ export function Inventory() {
   return (
     <PageTransition className="pb-8">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900 border-l-4 border-indigo-600 pl-4">{t('inventory.title')}</h1>
-          <p className="text-sm text-slate-500 mt-1 pl-4">{t('inventory.subtitle')}</p>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900 border-l-4 border-indigo-600 pl-3">{t('inventory.title')}</h1>
+          <p className="text-xs text-slate-500 mt-1 pl-3">{t('inventory.subtitle')}</p>
         </div>
         
         {profile?.role === 3 && (
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2">
             <button 
               onClick={() => pdfService.generateInventoryReport(products, profile, profile?.shops?.name)}
-              className="flex items-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-6 py-3 rounded-2xl font-bold text-sm transition-all border border-emerald-200 shadow-sm"
+              className="flex-1 md:flex-none flex justify-center items-center gap-2 bg-white text-emerald-600 px-4 py-2.5 rounded-xl font-bold text-sm border border-slate-200 shadow-sm hover:border-emerald-200 hover:bg-emerald-50 transition-all"
             >
-              <FileText size={18} /> {t('inventory.buttons.report')}
+              <FileText size={16} /> <span className="hidden sm:inline">{t('inventory.buttons.report')}</span>
             </button>
             <button 
               onClick={() => setIsCategoryManagerOpen(true)}
-              className="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 px-6 py-3 rounded-2xl font-bold text-sm transition-all border border-slate-200 shadow-sm"
+              className="flex-1 md:flex-none flex justify-center items-center gap-2 bg-white text-slate-700 px-4 py-2.5 rounded-xl font-bold text-sm border border-slate-200 shadow-sm hover:border-indigo-200 hover:bg-indigo-50 transition-all"
             >
-              <Folders size={18} className="text-indigo-600" /> {t('inventory.buttons.manageCategories')}
+              <Folders size={16} className="text-indigo-600" /> <span className="hidden sm:inline">{t('inventory.buttons.manageCategories')}</span>
             </button>
             <button 
               onClick={() => { setEditingProduct(null); setIsProductFormOpen(true); }}
-              className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-2xl font-bold text-sm transition-all shadow-xl shadow-indigo-200 group"
+              className="flex-[2] md:flex-none flex justify-center items-center gap-2 bg-indigo-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-md shadow-indigo-200 hover:bg-indigo-700 transition-all"
             >
-              <Plus size={18} /> {t('inventory.buttons.addNew')}
+              <Plus size={16} /> {t('inventory.buttons.addNew')}
             </button>
           </div>
         )}
       </div>
 
       {/* Filter Bar */}
-      <div className="bg-white rounded-3xl p-6 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8 flex flex-col lg:flex-row gap-4">
+      <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 mb-6 flex flex-col md:flex-row gap-3">
         <div className="flex-1 relative">
            <input
              type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
              placeholder={t('inventory.filters.searchPlaceholder')}
-             className="w-full pl-11 pr-4 py-3 rounded-2xl bg-white border border-slate-200 focus:ring-2 focus:ring-indigo-500 font-medium text-slate-800 transition-all shadow-sm"
+             className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 border-none focus:ring-2 focus:ring-indigo-500 font-medium text-sm text-slate-800 transition-all"
            />
-           <Folders className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+           <Filter className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap md:flex-nowrap gap-2">
            <select 
              value={selectedCat} onChange={(e) => setSelectedCat(e.target.value)}
-             className="bg-slate-50 border-none rounded-xl px-4 py-3 text-sm font-bold text-slate-600"
+             className="flex-1 bg-slate-50 border-none rounded-xl px-3 py-2.5 text-xs font-bold text-slate-600 focus:ring-2 focus:ring-indigo-500"
            >
              <option value="">{t('inventory.filters.allCategories')}</option>
              {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
            </select>
            <select 
              value={selectedColor} onChange={(e) => setSelectedColor(e.target.value)}
-             className="bg-slate-50 border-none rounded-xl px-4 py-3 text-sm font-bold text-slate-600"
+             className="flex-1 bg-slate-50 border-none rounded-xl px-3 py-2.5 text-xs font-bold text-slate-600 focus:ring-2 focus:ring-indigo-500"
            >
              <option value="">{t('inventory.filters.color')}</option>
              {colors.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
            </select>
-           <button onClick={resetFilters} title={t('inventory.filters.reset')} className="p-3 bg-rose-50 text-rose-500 rounded-xl hover:bg-rose-100 transition-colors"><X size={18} /></button>
+           <button onClick={resetFilters} title={t('inventory.filters.reset')} className="p-2.5 bg-rose-50 text-rose-500 rounded-xl hover:bg-rose-100 transition-colors flex items-center justify-center"><X size={16} /></button>
         </div>
       </div>
 
       {/* Main Inventory Grid */}
-      <div className="bg-slate-50/50 rounded-3xl p-8 border border-white shadow-inner min-h-[500px]">
+      <div className="bg-slate-50/50 rounded-2xl p-4 md:p-6 border border-slate-100 shadow-inner min-h-[500px]">
         {loading ? (
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[...Array(6)].map((_, i) => <SkeletonCard key={i} />)}
            </div>
         ) : filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProducts.map((p) => (
-              <div key={p.id} className="bg-white rounded-3xl p-7 shadow-sm border border-slate-100 hover:shadow-2xl hover:shadow-indigo-100 transition-all group flex flex-col">
-                <div className="flex justify-between items-start mb-4">
-                  <span className="text-[10px] font-black uppercase tracking-tighter bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-md leading-none">
+              <div key={p.id} className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-indigo-100/50 transition-all group flex flex-col">
+                <div className="flex justify-between items-start mb-3">
+                  <span className="text-[10px] font-bold uppercase tracking-wide bg-slate-100 text-slate-600 px-2.5 py-1 rounded-lg">
                     {p.categories?.name || t('inventory.product.noCategory')}
                   </span>
-                  <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="flex gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                     {profile?.role === 3 && (
-                      <button onClick={() => handleDelete(p.id)} className="p-1.5 text-slate-300 hover:text-rose-500 transition-colors"><Trash2 size={16} /></button>
+                      <button onClick={() => handleDelete(p.id)} className="p-1.5 text-slate-400 hover:bg-rose-50 hover:text-rose-500 rounded-lg transition-colors"><Trash2 size={16} /></button>
                     )}
                   </div>
                 </div>
                 
-                <h4 className="font-extrabold text-slate-800 text-xl leading-tight mb-2 group-hover:text-indigo-600 transition-colors">
+                <h4 className="font-bold text-slate-800 text-lg leading-tight mb-1 group-hover:text-indigo-600 transition-colors">
                   {p.name}
                 </h4>
-                {p.description && <p className="text-xs text-slate-600 italic mb-6 line-clamp-2">"{p.description}"</p>}
+                {p.description && <p className="text-xs text-slate-500 mb-4 line-clamp-2">{p.description}</p>}
 
-                <div className="space-y-3 mb-8">
+                <div className="space-y-2 mb-6">
                   {p.product_variants?.map((v: any) => (
-                    <div key={v.id} className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-100/50 hover:bg-indigo-50/50 transition-colors">
+                    <div key={v.id} className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100 hover:border-indigo-100 transition-colors">
                        <div className="flex flex-col">
-                         <span className="text-[11px] font-bold text-slate-700">{v.colors?.name} / {v.sizes?.name}</span>
-                         <span className="text-[9px] font-mono text-slate-600">{v.sku || 'N/A'}</span>
+                         <span className="text-[11px] font-semibold text-slate-700">{v.colors?.name} / {v.sizes?.name}</span>
+                         <span className="text-[10px] text-slate-500">{v.sku || 'N/A'}</span>
                        </div>
-                       <div className="flex items-center gap-3">
-                         <div className={`px-2 py-1 rounded-lg text-xs font-black ${v.stock_quantity <= (v.low_stock_threshold || 10) ? 'bg-rose-100 text-rose-600 animate-pulse' : 'bg-emerald-100 text-emerald-600'}`}>
+                       <div className="flex items-center gap-2">
+                         <div className={`px-2 py-1 rounded-md text-[11px] font-bold ${v.stock_quantity <= (v.low_stock_threshold || 10) ? 'bg-rose-100 text-rose-600' : 'bg-emerald-100 text-emerald-700'}`}>
                            {v.stock_quantity}
                          </div>
                           <button 
                             onClick={() => openStockModal({ ...v, shop_id: p.shop_id }, p.name)}
-                            className="p-2 bg-white rounded-xl shadow-sm hover:bg-indigo-600 hover:text-white transition-all scale-90 hover:scale-100"
+                            className="p-1.5 bg-white text-indigo-600 rounded-lg shadow-sm border border-slate-100 hover:bg-indigo-600 hover:text-white transition-colors"
                             title={t('inventory.product.stockAction')}
                           >
                             <Activity size={14} />
@@ -222,14 +222,14 @@ export function Inventory() {
                   ))}
                 </div>
 
-                <div className="mt-auto pt-6 border-t border-slate-50 flex gap-2">
+                <div className="mt-auto pt-4 border-t border-slate-100 flex gap-2">
                   <button 
                     onClick={() => handleEdit(p)}
-                    className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all ${profile?.role === 3 ? 'bg-slate-900 text-white hover:bg-slate-800' : 'bg-slate-100 text-slate-400 cursor-not-allowed'}`}
+                    className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold transition-all ${profile?.role === 3 ? 'bg-slate-50 text-slate-700 hover:bg-slate-100' : 'bg-slate-50 text-slate-400 cursor-not-allowed'}`}
                     disabled={profile?.role !== 3}
                     title={profile?.role !== 3 ? t('inventory.product.adminOnly') : ""}
                   >
-                    <Edit3 size={16} /> {t('inventory.product.details')}
+                    <Edit3 size={14} /> {t('inventory.product.details')}
                   </button>
                   <button 
                     onClick={() => {
@@ -238,16 +238,16 @@ export function Inventory() {
                         openStockModal(variantsWithShop[0], p.name, variantsWithShop);
                       }
                     }}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition-all border border-indigo-100"
+                    className="flex-[1.5] flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold bg-indigo-600 text-white hover:bg-indigo-700 transition-all shadow-md shadow-indigo-200"
                   >
-                    <Activity size={16} /> {t('inventory.product.stockAction')}
+                    <Activity size={14} /> {t('inventory.product.stockAction')}
                   </button>
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center py-20 text-slate-300 italic font-medium">
+          <div className="flex flex-col items-center justify-center py-20 text-slate-400 italic font-medium">
             <Filter size={48} className="mb-4 opacity-20" />
             {t('inventory.product.noProductFound')}
           </div>

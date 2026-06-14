@@ -132,7 +132,7 @@ export function Reports() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <KPICard 
           title={t('reports.kpi.totalRevenue')} 
           value={formatCurrency(summary?.totalRevenue, profile)}
@@ -153,13 +153,6 @@ export function Reports() {
           value={formatCurrency(summary?.totalRefunds, profile)}
           icon={<RotateCcw className="text-rose-600" size={24} />}
           color="bg-rose-50"
-          loading={loading}
-        />
-        <KPICard 
-          title={t('reports.kpi.netProfit')} 
-          value={formatCurrency(summary?.netProfit, profile)}
-          icon={<PieChart className="text-emerald-600" size={24} />}
-          color="bg-emerald-50"
           loading={loading}
         />
       </div>

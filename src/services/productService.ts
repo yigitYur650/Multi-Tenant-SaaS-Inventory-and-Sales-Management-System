@@ -86,13 +86,17 @@ export class ProductService implements IProductService {
   /**
    * Ürünü günceller (Clean Payload/DTO - Sadece tanımlı alanlar).
    */
-  async updateProduct(id: string, product: ProductUpdate): Promise<ProductRow> {
-    const payload: ProductUpdate = {};
+  async updateProduct(id: string, product: any): Promise<ProductRow> {
+    const payload: any = {};
     if (product.name !== undefined) payload.name = product.name;
     if (product.description !== undefined) payload.description = product.description;
-    if (product.category_id !== undefined) payload.category_id = product.category_id;
-    if (product.shop_id !== undefined) payload.shop_id = product.shop_id;
+    if (product.category_id !== undefined && product.category_id !== '') payload.category_id = product.category_id;
+    if (product.shop_id !== undefined && product.shop_id !== '') payload.shop_id = product.shop_id;
+    if (product.version !== undefined) payload.version = product.version;
 
+    if (Object.keys(payload).length === 0) return {} as ProductRow;
+
+    console.log("updateProduct ID:", id, "Payload:", payload);
     const { data, error } = await this.supabase
       .from('products')
       .update(payload)
@@ -100,7 +104,10 @@ export class ProductService implements IProductService {
       .select()
       .single();
       
-    if (error) throw error;
+    if (error) {
+      console.error("🔥 Supabase Update Error:", error);
+      throw error;
+    }
     return data;
   }
 

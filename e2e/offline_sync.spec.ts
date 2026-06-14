@@ -5,8 +5,8 @@ test.describe('Çevrimdışı Senkronizasyon (Offline Sync) Chaos Engineering Te
   test('Ağ kesildiğinde satış kuyruğa alınmalı ve ağ geldiğinde otomatik senkronize edilmeli', async ({ page, context }) => {
     // 1. Login işlemi
     await page.goto('/login', { waitUntil: 'networkidle' });
-    await page.locator('input[type="email"]').fill('yigityur65@gmail.com');
-    await page.locator('input[type="password"]').fill('ftm1476');
+    await page.locator('input[type="email"]').fill('TEST_EMAIL_PLACEHOLDER');
+    await page.locator('input[type="password"]').fill('TEST_PASSWORD_PLACEHOLDER');
     await page.locator('button[type="submit"]').click();
     
     // Login sayfasından yönlenmeyi bekle

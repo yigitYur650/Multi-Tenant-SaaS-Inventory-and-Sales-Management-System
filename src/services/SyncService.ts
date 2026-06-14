@@ -66,6 +66,7 @@ export class SupabaseSyncProvider implements ISyncProvider {
             payload: { ...item.payload, request_id: item.request_id } 
           });
           error = rpcError;
+          if (error) console.error("🔥 process_sale RPC Error:", error);
         } else {
           const { error: insertError } = await (supabase as any)
             .from(item.table as any)

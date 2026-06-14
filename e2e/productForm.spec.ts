@@ -6,8 +6,8 @@ import { test, expect, Page } from '@playwright/test';
  * =========================================================
  */
 
-const TEST_EMAIL = 'yigityur65@gmail.com';
-const TEST_PASSWORD = 'ftm1476';
+const TEST_EMAIL = 'TEST_EMAIL_PLACEHOLDER';
+const TEST_PASSWORD = 'TEST_PASSWORD_PLACEHOLDER';
 
 // Yardımcı: Login işlemi
 async function loginAndGoToInventory(page: Page) {
