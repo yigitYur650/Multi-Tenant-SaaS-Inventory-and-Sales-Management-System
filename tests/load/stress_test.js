@@ -10,10 +10,9 @@ import { uuidv4 } from 'https://jslib.k6.io/k6-utils/1.4.0/index.js';
 
 export const options = {
   stages: [
-    { duration: '30s', target: 500 },   // Hızlı yüklenme
-    { duration: '1m', target: 2000 },   // 2000 VU'ya tırmanış
-    { duration: '2m', target: 5000 },   // Hot-Row'a 5.000 VU yüklenme (Stres Testi)
-    { duration: '30s', target: 0 },     // İyileşme süreci
+    { duration: '30s', target: 500 },   // Hızlı tırmanış
+    { duration: '1m', target: 2000 },   // 2000 VU (GH Actions Runner Limit)
+    { duration: '30s', target: 0 },     // İyileşme
   ],
   thresholds: {
     // p(95) yanıt süresi 500ms altında olmalı
@@ -23,7 +22,7 @@ export const options = {
   },
 };
 
-const BASE_URL = 'http://localhost:3001/api/v1/sync/batch';
+const BASE_URL = __ENV.API_URL || 'http://127.0.0.1:3001/api/v1/sync/batch';
 
 // Hot-Row Testi için Sabit Ürün Varyant ID'si
 const HOT_ROW_VARIANT_ID = '550e8400-e29b-41d4-a716-446655440001';
