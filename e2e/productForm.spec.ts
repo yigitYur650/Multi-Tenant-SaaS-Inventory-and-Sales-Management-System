@@ -6,8 +6,8 @@ import { test, expect, Page } from '@playwright/test';
  * =========================================================
  */
 
-const TEST_EMAIL = 'TEST_EMAIL_PLACEHOLDER';
-const TEST_PASSWORD = 'TEST_PASSWORD_PLACEHOLDER';
+const TEST_EMAIL = process.env.E2E_USER_EMAIL || 'TEST_EMAIL_PLACEHOLDER';
+const TEST_PASSWORD = process.env.E2E_USER_PASSWORD || 'TEST_PASSWORD_PLACEHOLDER';
 
 // Yardımcı: Login işlemi
 async function loginAndGoToInventory(page: Page) {
