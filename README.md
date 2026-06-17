@@ -36,20 +36,11 @@ Direct client-to-database architectures frequently suffer from connection exhaus
 
 ## 📊 Performance & Validation Benchmarks
 
-System resilience has been thoroughly tested and validated across strict end-to-end (E2E), stress, and pipeline integration tests[cite: 2]:
-
-### 1. High-Throughput Load Testing (k6)
-* **Simulation Profile:** 5,000 Concurrent Virtual Users (VUs) sustaining continuous bulk sync events[cite: 2].
-* **Throughput Volumetrics:** ~600,000 bulk synchronization requests systematically processed[cite: 2].
-* **Success Metric:** **100% Success Rate** (Zero dropouts, zero 503 backpressure failures, zero packet degradation)[cite: 2].
-* **Latency Envelope:** `p(95) < 200ms`[cite: 2].
-* **Architectural Insight:** By leveraging Go’s multiplexed asynchronous channels and memory footprint structures, a standard 25-connection database pool safely absorbed and serialized massive transactional volume without connection exhaustion[cite: 2].
-
-### 2. Network-Partition Resilience Testing (Playwright E2E)
+### 1. Network-Partition Resilience Testing (Playwright E2E)
 * **Simulation Profile:** Artificial drop of network interface mid-transaction followed by connection re-establishment[cite: 2].
 * **Result:** `1 PASSED`[cite: 2]. The client automatically intercepted failed transport signals, committed mutation frames directly to Dexie.js under a `PENDING` flag, and seamlessly drained the queue to the Go API gateway the moment the transport layers re-connected[cite: 2].
 
-### 3. Automated Quality Gates (CI/CD Pipeline)
+### 2. Automated Quality Gates (CI/CD Pipeline)
 * **Unit Testing:** 23/23 Vitest assertions executing under strict clean isolation environments[cite: 2].
 * **GitHub Actions:** Automates schema migration syntax validation, multi-stage compilation validation, and live Redis integration smoke tests on every trunk mutation[cite: 2].
 
