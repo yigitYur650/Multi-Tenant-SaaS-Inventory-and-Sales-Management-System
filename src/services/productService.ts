@@ -117,9 +117,29 @@ export class ProductService implements IProductService {
    * aktif (silinmemiş) varyantı olan ürünler silinemez.
    */
   async deleteProduct(id: string): Promise<void> {
-    const { error: deleteError } = await this.supabase
-      .from('products')
-      .update({ is_deleted: true } as any)
+    // 1. Ürünün aktif varyantlarını çek
+    const { data: variants, error: fetchError } = await (this.supabase
+      .from('product_variants') as any)
+      .select('id')
+      .eq('product_id', id)
+      .eq('is_deleted', false);
+
+    if (fetchError) {
+      console.error("❌ Fetch active variants error before deleteProduct:", fetchError);
+      throw fetchError;
+    }
+
+    // 2. Aktif varyantları soft-delete yap (RPC çağrısıyla)
+    if (variants && variants.length > 0) {
+      for (const v of variants) {
+        await this.deleteVariant(v.id);
+      }
+    }
+
+    // 3. Ürünün kendisini soft-delete yap
+    const { error: deleteError } = await (this.supabase
+      .from('products') as any)
+      .update({ is_deleted: true })
       .eq('id', id);
       
     if (deleteError) {

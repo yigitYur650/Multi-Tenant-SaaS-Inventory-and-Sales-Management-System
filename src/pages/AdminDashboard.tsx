@@ -283,12 +283,17 @@ function StaffManagement({ shopId }: { shopId: string }) {
     
     setLoading(true);
     try {
-      // 1. Ghost Auth Client Oluştur (PersistSession FALSE)
+      // 1. Ghost Auth Client Oluştur (Isolate storage to prevent "multiple GoTrueClient instances" warnings/conflicts)
       const ghostClient = createClient(supabaseUrl, supabaseAnonKey, {
         auth: {
           persistSession: false,
           autoRefreshToken: false,
-          detectSessionInUrl: false
+          detectSessionInUrl: false,
+          storage: {
+            getItem: () => null,
+            setItem: () => {},
+            removeItem: () => {},
+          }
         }
       });
 
@@ -301,16 +306,14 @@ function StaffManagement({ shopId }: { shopId: string }) {
       if (authError) throw authError;
       if (!authData.user) throw new Error(t('admin.staff.addForm.errorCreate'));
 
-      // 3. Profil Oluştur (Orijinal supabase instance ile)
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .insert({
-          id: authData.user.id,
-          shop_id: shopId,
-          role: parseInt(role),
-          full_name: fullName.trim() || email.split('@')[0],
-          email: email
-        } as any);
+      // 3. Profil Oluştur (Yeni eklenen RPC fonksiyonu vasıtasıyla - RLS bypass edilir)
+      const { error: profileError } = await (supabase as any).rpc('create_staff_profile', {
+        p_user_id: authData.user.id,
+        p_shop_id: shopId,
+        p_role: parseInt(role),
+        p_full_name: fullName.trim() || email.split('@')[0],
+        p_email: email
+      });
 
       if (profileError) throw profileError;
 
