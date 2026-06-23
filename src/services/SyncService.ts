@@ -178,6 +178,8 @@ class SyncService {
       // Kuyrukta daha fazla öğe varsa devam et
       if (pendingItems.length === batchSize) {
         this.processQueue();
+      } else if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('sync_complete'));
       }
     } finally {
       this.isProcessing = false;

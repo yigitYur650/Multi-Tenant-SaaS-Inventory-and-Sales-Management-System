@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 interface RefreshContextProps {
   refreshKey: number;
@@ -13,6 +13,15 @@ export const RefreshProvider: React.FC<{ children: ReactNode }> = ({ children })
   const triggerRefresh = () => {
     setRefreshKey(prev => prev + 1);
   };
+
+  useEffect(() => {
+    const handleSyncComplete = () => {
+      console.log("Sync completed! Triggering UI refresh...");
+      triggerRefresh();
+    };
+    window.addEventListener('sync_complete', handleSyncComplete);
+    return () => window.removeEventListener('sync_complete', handleSyncComplete);
+  }, []);
 
   return (
     <RefreshContext.Provider value={{ refreshKey, triggerRefresh }}>
